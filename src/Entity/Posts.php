@@ -148,8 +148,9 @@ class Posts
      * @return Collection|Media[]
      */
     public function getMedia(): Collection
-    {
+    { 
         return $this->media;
+       
     }
 
     public function addMedium(Media $medium): self

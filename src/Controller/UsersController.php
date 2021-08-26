@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/users")
  */
-class UsersController extends AbstractController
+class UsersController extends AbstractController 
 {
     /**
      * @Route("/", name="users_index", methods={"GET"})
@@ -38,7 +38,7 @@ class UsersController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Posts;
+use App\Entity\Media;
 use App\Form\PostsType;
 use App\Repository\PostsRepository;
+use App\Repository\MediaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +17,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PostsController extends AbstractController
 {
+    
+    public function baseIndex()
+    {
+        return $this->render('posts/index.html.twig');
+    }
+
     /**
      * @Route("/", name="posts_index", methods={"GET"})
      */
-    public function index(PostsRepository $postsRepository): Response
+    public function index(MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
     {
         return $this->render('posts/index.html.twig', [
+            'media' => $mediaRepository->findAll(),
             'posts' => $postsRepository->findAll(),
         ]);
     }

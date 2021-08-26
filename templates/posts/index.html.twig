@@ -3,37 +3,19 @@
 {% block title %}Posts index{% endblock %}
 
 {% block body %}
-    <h1>Posts index</h1>
+<h1>Posts index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Content</th>
-                <th>Geolocation</th>
-                <th>Url</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for post in posts %}
-            <tr>
-                <td>{{ post.id }}</td>
-                <td>{{ post.content }}</td>
-                <td>{{ post.geolocation }}</td>
-                <td>{{ post.url }}</td>
-                <td>
-                    <a href="{{ path('posts_show', {'id': post.id}) }}">show</a>
-                    <a href="{{ path('posts_edit', {'id': post.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% for medium in media %}
 
-    <a href="{{ path('posts_new') }}">Create new</a>
+    <img style="width: 150px;" src="assets/{{ medium.path }}" alt="">
+    {% for post in posts %}
+        {{ post.content }}
+        {{ post.geolocation }}
+        <a href="{{ path('posts_edit', {'id': post.id}) }}">edit</a>
+    {% else %}
+    no records found
+
+    {% endfor %}
+{% endfor %}
+<a href="{{ path('posts_new') }}">Create new</a>
 {% endblock %}

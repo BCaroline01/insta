@@ -69,12 +69,28 @@ class Users
      */
     private $notifComments;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date_register;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->followers = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->notifComments = new ArrayCollection();
+        $this->date_register = new \DateTimeInterface('now');
     }
 
     public function getId(): ?int
@@ -271,6 +287,42 @@ class Users
             }
         }
 
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDateRegister(): ?\DateTimeInterface
+    {
+        return $this->date_register;
+    }
+
+    public function setDateRegister(\DateTimeInterface $date_register): self
+    {
+        $this->date_register = $date_register;
+        
         return $this;
     }
 }

@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-        <p>dsvfsgzrgbzrgrz</p>
-        {% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+    and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+    {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
+
+    {% block javascripts %}
+    {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+
+<body>
+    {% block header %}
+    <header>
+        <img src="{{ asset('assets/Instagram_logo.png') }}" alt="">
+        <nav>
+            <ul>
+                <a href="/posts"><img src="{{ asset('assets/home.png') }}" alt=""></a>
+                <a href="/posts"><img src="{{ asset('assets/inbox.png') }}" alt=""></a>
+                <a href="/posts"><img src="{{ asset('assets/explore.png') }}" alt=""></a>
+                <a href="/posts"><img src="{{ asset('assets/heart.png') }}" alt=""></a>
+                <a href="/users"><img src="" alt="">profil</a>
+            </ul>
+        </nav>
+    </header>
+    {% endblock %}
+    {% block body %}{% endblock %}
+</body>
+
 </html>
