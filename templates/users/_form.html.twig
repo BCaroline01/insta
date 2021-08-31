@@ -1,4 +1,33 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <article id="form_sign">
+        <div class="head_form">
+            <img src="{{ asset('assets/instagram_logo.png') }}" alt="instagram">
+            <p>Inscrivez-vous pour voir les photos et vidéos de vos amis.</p>
+        </div>
+        {{ form_row(form.email) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.password) }}
+        <p class="ZGwn1">En vous inscrivant, vous acceptez nos <a target="_blank"
+                href="https://help.instagram.com/581066165581870" tabindex="0">Conditions générales</a>. Découvrez
+            comment nous recueillons, utilisons et partageons vos données en lisant notre <a target="_blank"
+                href="https://help.instagram.com/519522125107875" tabindex="0">Politique d’utilisation des données</a>
+            et comment nous utilisons les cookies et autres technologies similaires en consultant notre <a
+                target="_blank" href="/legal/cookies/" tabindex="0">Politique d’utilisation des cookies</a>.</p>
+        <button type="button" id="next">Suivant</button>        
+    </article>
+    <article id="dob_sign">
+        <div class="header_dob">
+            <img src="{{ asset('assets/birthday_cake.png') }}" alt="birthday cake">
+            <h3>Ajoutez votre date de naissance</h3>
+            <p>Elle ne sera pas affichée sur votre profil public.</p>
+            <button id="btn_birthday">Pourquoi dois-je indiquer ma date de naissance ?</button>
+        </div>
+        {{ form_row(form.dob) }}
+        <div class="footer_dob">
+            <p>Utilisez votre propre date de naissance, même si ce compte est destiné à une entreprise, à un animal de compagnie ou à autre chose</p>
+            <button class="btn">{{ button_label|default('Suivant') }}</button>
+            <a href="/users/new">Retour</a>
+        </div>
+    </article>
+    {{ form_end(form) }}

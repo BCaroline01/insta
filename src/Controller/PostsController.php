@@ -43,6 +43,10 @@ class PostsController extends AbstractController
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 
+        $path = new Media();
+        $path->setPath('path');
+        $post->getMedia()->add($path);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);

@@ -1,4 +1,7 @@
 {{ form_start(form) }}
+    {% for medium in form.media %}
+        {{ form_row(medium.path) }}
+    {% endfor %}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

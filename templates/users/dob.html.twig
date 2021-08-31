@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Users{% endblock %}
+{% block title %}New Users dob{% endblock %}
 
 {% block body %}
-<section class="user">
-        {{ include('users/_form.html.twig') }}
+<section class="birth_date">
+    <article class="dob_sign">
+        <img src="{{ asset('assets/birthday_cake.png') }}" alt="birthday cake">
+        <h3>Ajoutez votre date de naissance</h3>
+        <p>Elle ne sera pas affichée sur votre profil public.</p>
+        <button id="btn_birthday">Pourquoi dois-je indiquer ma date de naissance ?</button>
+        {{ include('users/_form_dob.html.twig') }}
     </article>
+    
     <div class="login">
         <p>Vous avez un compte ? <a href="/">Connectez-vous</a></p>
     </div>

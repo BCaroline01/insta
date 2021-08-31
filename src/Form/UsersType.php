@@ -9,14 +9,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UsersType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('thumbnail', FileType::class, [
-                'label' => 'Photo de profil'
+            ->add('email',TextType::class, [
+                'label' => false,
+                'attr' => array( 'placeholder' => 'Email')
             ])
             ->add('name',TextType::class, [
                 'label' => false,
@@ -26,24 +28,15 @@ class UsersType extends AbstractType
                 'label' => false,
                 'attr' => array( 'placeholder' => 'Nom d\'utilisateur')
             ])
-            ->add('password',TextType::class, [
+            ->add('password',PasswordType::class, [
                 'label' => false,
                 'attr' => array( 'placeholder' => 'Mot de passe')
             ])
             ->add('dob', DateType::class,[
-                'widget' => 'single_text',
-                'label' => 'Date de naissance'
-            ])
-            ->add('description')
-            ->add('email',TextType::class, [
                 'label' => false,
-                'attr' => array( 'placeholder' => 'Email')
+                'html5' => false,
+                'format' => 'MMMMddyyyy',
             ])
-            ->add('phone',TextType::class, [
-                'label' => false,
-                'attr' => array( 'placeholder' => 'Téléphone')
-            ])
-            
         ;
     }
 

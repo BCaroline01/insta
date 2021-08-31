@@ -6,11 +6,13 @@ use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id
@@ -90,7 +92,26 @@ class Users
         $this->followers = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->notifComments = new ArrayCollection();
-        $this->date_register = new \DateTimeInterface('now');
+        $this->date_register = new \DateTime('now');
+        
+    }
+    
+
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
     }
 
     public function getId(): ?int
@@ -322,7 +343,7 @@ class Users
     public function setDateRegister(\DateTimeInterface $date_register): self
     {
         $this->date_register = $date_register;
-        
+
         return $this;
     }
 }
