@@ -411,6 +411,66 @@
   height: 40px;
 }
 
+.user_show {
+  display: flex;
+  justify-content: center;
+}
+
+.user_show .profil_img {
+  margin-top: 30px;
+}
+
+.user_show .profil_img img {
+  width: 150px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
+}
+
+.user_show .profil_content {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+.user_show .profil_content .username {
+  display: flex;
+  flex-direction: row;
+}
+
+.user_show .profil_content .username h3 {
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.user_show .profil_content .username button {
+  cursor: pointer;
+  margin-left: 20px;
+  background-color: transparent;
+  border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
+  border-radius: 4px;
+  color: rgba(var(--f75, 38, 38, 38), 1);
+  padding: 5px;
+}
+
+.user_show .profil_content .count {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 20px 0;
+}
+
+.user_show .profil_content .count li {
+  font-size: 16px;
+  margin-right: 40px;
+  font-weight: 400;
+}
+
+.user_show .profil_content .description :first-child {
+  font-weight: 600;
+}
+
 @font-face {
   font-family: 'Segoe UI';
   src: url("../fonts/Segoe_UI/Segoe_UI.ttf)") format("truetype");
