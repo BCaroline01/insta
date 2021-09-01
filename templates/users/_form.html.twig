@@ -21,12 +21,13 @@
             <img src="{{ asset('assets/birthday_cake.png') }}" alt="birthday cake">
             <h3>Ajoutez votre date de naissance</h3>
             <p>Elle ne sera pas affichée sur votre profil public.</p>
-            <button id="btn_birthday">Pourquoi dois-je indiquer ma date de naissance ?</button>
+            <button type="button" id="btn_birthday">Pourquoi dois-je indiquer ma date de naissance ?</button>
         </div>
         {{ form_row(form.dob) }}
         <div class="footer_dob">
+            <p id="enter_date">Vous devez entrer votre date de naissance</p>
             <p>Utilisez votre propre date de naissance, même si ce compte est destiné à une entreprise, à un animal de compagnie ou à autre chose</p>
-            <button class="btn">{{ button_label|default('Suivant') }}</button>
+            <button id="submit" class="btn" disabled>{{ button_label|default('Suivant') }}</button>
             <a href="/users/new">Retour</a>
         </div>
     </article>

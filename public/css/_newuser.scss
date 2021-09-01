@@ -1,3 +1,82 @@
+#Modal_dob{
+    overflow-y: hidden;
+
+    #background{
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        background-color: rgba(0,0,0,.65);
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        #container{
+            
+            background-color: rgba(var(--f23,255,255,255),1);
+            border-radius: 12px;
+            width: 400px;
+
+            #modal_header{
+                display: flex;
+                border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+                width: 100%;
+                font-size: 16px;
+                font-weight: 600;
+                justify-content: space-between;
+                align-items: center;
+                h1{
+                    text-align: center;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 24px;
+                }
+                #close{
+                    font-size: 40px;
+                    font-weight: 100;
+                    padding-right: 5px;
+                    cursor: pointer;
+                }
+            }
+            #modal_content{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 30px;
+                h3{
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin: 5px 0;
+                }
+                p{
+                    text-align: center; 
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: rgba(var(--i1d,38,38,38),1);
+                }
+            }
+            #modal_footer{
+                border-top: 1px solid rgba(var(--b6a,219,219,219),1);
+                display: flex;
+                justify-content: center;
+                button{
+                    padding: 15px;
+                    cursor: pointer;
+                    color: rgba(var(--d69,0,149,246),1);
+                    border: none;
+                    font-size: 14px;
+                    font-weight: 600;
+                    background-color: white;
+                }
+            }
+        }
+    }
+}
+
 .user{
     display: flex;
     flex-direction: column;
@@ -101,6 +180,8 @@
             font-size: 14px;
             font-weight: 500;
             color: rgba(var(--d69,0,149,246),1);
+            cursor: pointer;
+            padding: 5px;
             }
         }
            select{
@@ -123,7 +204,7 @@
             margin: 10px 0;
             color: rgba(var(--f52,142,142,142),1);
            }
-           button{
+           #submit{
             margin-top: 10px;
             background-color: rgba(var(--d69,0,149,246),.3);
             color: white;

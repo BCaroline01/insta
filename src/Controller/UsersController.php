@@ -60,32 +60,32 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/dob/{id}", name="users_sign_dob", methods={"GET","POST"})
-     */
-    // public function sign_dob(Request $request, Users $user): Response
-    // {
-    //     $form = $this->createForm(BirthdayType::class, $user);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $this->getDoctrine()->getManager()->flush();
-
-    //         return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-
-    //     return $this->renderForm('users/dob.html.twig', [
-    //         'user' => $user,
-    //         'form' => $form,
-    //     ]);
-    // }
-
-    /**
-     * @Route("/{id}", name="users_show", methods={"GET"})
+     * @Route("/{username}", name="users_show", methods={"GET"})
      */
     public function show(Users $user): Response
     {
         return $this->render('users/show.html.twig', [
             'user' => $user,
+        ]);
+    }
+
+     /**
+     * @Route("/{id}/", name="users_edit", methods={"GET","POST"})
+     */
+    public function userprofile(Request $request, Users $user): Response
+    {
+        $form = $this->createForm(UsersType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('users/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
         ]);
     }
 

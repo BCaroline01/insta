@@ -1,7 +1,6 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 .home {
@@ -123,6 +122,91 @@
   height: 40px;
 }
 
+#Modal_dob {
+  overflow-y: hidden;
+}
+
+#Modal_dob #background {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Modal_dob #background #container {
+  background-color: rgba(var(--f23, 255, 255, 255), 1);
+  border-radius: 12px;
+  width: 400px;
+}
+
+#Modal_dob #background #container #modal_header {
+  display: flex;
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#Modal_dob #background #container #modal_header h1 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+#Modal_dob #background #container #modal_header #close {
+  font-size: 40px;
+  font-weight: 100;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+#Modal_dob #background #container #modal_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+#Modal_dob #background #container #modal_content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+#Modal_dob #background #container #modal_content p {
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+}
+
+#Modal_dob #background #container #modal_footer {
+  border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  display: flex;
+  justify-content: center;
+}
+
+#Modal_dob #background #container #modal_footer button {
+  padding: 15px;
+  cursor: pointer;
+  color: rgba(var(--d69, 0, 149, 246), 1);
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: white;
+}
+
 .user {
   display: flex;
   flex-direction: column;
@@ -239,6 +323,8 @@
   font-size: 14px;
   font-weight: 500;
   color: rgba(var(--d69, 0, 149, 246), 1);
+  cursor: pointer;
+  padding: 5px;
 }
 
 .user #dob_sign select {
@@ -265,7 +351,7 @@
   color: rgba(var(--f52, 142, 142, 142), 1);
 }
 
-.user #dob_sign .footer_dob button {
+.user #dob_sign .footer_dob #submit {
   margin-top: 10px;
   background-color: rgba(var(--d69, 0, 149, 246), 0.3);
   color: white;
@@ -327,10 +413,11 @@
 
 @font-face {
   font-family: 'Segoe UI';
-  src: url("{{asset(fonts/Segoe_UI/Segoe_UI.ttf)}}") format("truetype");
+  src: url("../fonts/Segoe_UI/Segoe_UI.ttf)") format("truetype");
 }
 
 body {
   background-color: rgba(var(--b3f, 250, 250, 250), 1);
+  font-family: 'Segoe UI', sans-serif;
 }
 /*# sourceMappingURL=main.css.map */
