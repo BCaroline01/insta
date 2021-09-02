@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Media;
+use App\Entity\Posts;
+use App\Repository\PostsRepository;
+use App\Repository\MediaRepository;
 use App\Entity\Users;
 use App\Form\UsersType;
-use App\Form\BirthdayType;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +51,7 @@ class UsersController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            $id = $user->getId();
+            
             
             return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -62,11 +65,19 @@ class UsersController extends AbstractController
     /**
      * @Route("/{username}", name="users_show", methods={"GET"})
      */
-    public function show(Users $user): Response
+    public function show(Users $user, MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
     {
+        
+        $id_user = $user->getId();
+     
+
+
         return $this->render('users/show.html.twig', [
             'user' => $user,
+            'posts' => $postsRepository->findBy(['id_user' => $id_user]),
+
         ]);
+
     }
 
      /**

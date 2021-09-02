@@ -28,6 +28,8 @@ class PostsController extends AbstractController
      */
     public function index(MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
     {
+
+
         return $this->render('posts/index.html.twig', [
             'media' => $mediaRepository->findAll(),
             'posts' => $postsRepository->findAll(),

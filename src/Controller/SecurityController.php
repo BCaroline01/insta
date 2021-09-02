@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,12 +22,16 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
         
-        $Username = $this->getUser()->getUsername();
-       
+        if($this->getUser()){
+            $username = $this->getUser()->getUsername(); 
+            return $this->redirectToRoute('users_show', ['username' => $username]);
+        }
+
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error'         => $error,
-            'username'            => $Username,
+ 
+      
         ]);
     }
 

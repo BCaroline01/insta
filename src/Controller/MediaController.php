@@ -53,12 +53,13 @@ class MediaController extends AbstractController
              // $file stores the uploaded file
         /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
         $file = $form->get('path')->getData();
-      
+        $folder = 'assets/';
+            
         if ($file) {
             $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             // this is needed to safely include the file name as part of the URL
             // $safeFilename = $slugger->slug($originalFilename);
-            $newFilename = $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
+            $newFilename = $folder. $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
 
             // Move the file to the directory where brochures are stored
             try {
@@ -70,8 +71,7 @@ class MediaController extends AbstractController
                 // ... handle exception if something happens during file upload
             }
 
-            // updates the 'brochureFilename' property to store the PDF file name
-            // instead of its contents
+            // updates the 'brochureFilename' property to store the path file name
             $medium->setPath($newFilename);
         }
 

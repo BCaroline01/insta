@@ -20,6 +20,16 @@ class MediaRepository extends ServiceEntityRepository
       
     }
 
+    public function findByPost($value)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.id_post = :id_post')
+            ->setParameter('id_post', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Media[] Returns an array of Media objects
     //  */

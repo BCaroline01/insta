@@ -23,6 +23,16 @@
         </div>
     </section>
 </div>
+<div class="post_user_show">
+
+{% for post in posts %}
+        {{ post.id }}
+    {% for img in post.media %}
+        <img style="width: 150px;" src="{{ asset(img.path) }}" alt="">
+   {% endfor %}
+{% endfor %}
+     
+</div>
 
 
 <a href="{{ path('users_index') }}">back to list</a>
