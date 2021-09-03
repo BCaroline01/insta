@@ -411,40 +411,46 @@
   height: 40px;
 }
 
-.user_show {
-  display: flex;
-  justify-content: center;
+.user_show_body {
+  max-width: 975px;
+  margin: auto;
 }
 
-.user_show .profil_img {
+.user_show_body .user_show {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.user_show_body .user_show .profil_img {
   margin-top: 30px;
 }
 
-.user_show .profil_img img {
+.user_show_body .user_show .profil_img img {
   width: 150px;
   border-radius: 50%;
   border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
 }
 
-.user_show .profil_content {
+.user_show_body .user_show .profil_content {
   display: flex;
   flex-direction: column;
   margin: 30px;
 }
 
-.user_show .profil_content .username {
+.user_show_body .user_show .profil_content .username {
   display: flex;
   flex-direction: row;
 }
 
-.user_show .profil_content .username h3 {
+.user_show_body .user_show .profil_content .username h3 {
   color: rgba(var(--i1d, 38, 38, 38), 1);
   font-weight: 300;
   font-size: 28px;
   line-height: 32px;
 }
 
-.user_show .profil_content .username button {
+.user_show_body .user_show .profil_content .username button {
   cursor: pointer;
   margin-left: 20px;
   background-color: transparent;
@@ -454,21 +460,156 @@
   padding: 5px;
 }
 
-.user_show .profil_content .count {
+.user_show_body .user_show .profil_content .count {
   display: flex;
   flex-direction: row;
   list-style: none;
   margin: 20px 0;
 }
 
-.user_show .profil_content .count li {
+.user_show_body .user_show .profil_content .count li {
   font-size: 16px;
   margin-right: 40px;
   font-weight: 400;
 }
 
-.user_show .profil_content .description :first-child {
+.user_show_body .user_show .profil_content .description :first-child {
   font-weight: 600;
+}
+
+.user_show_body .list_post_user {
+  margin-top: 40px;
+  border-top: 1px solid rgba(var(--b38, 219, 219, 219), 1);
+  display: flex;
+  justify-content: space-around;
+}
+
+.user_show_body .list_post_user a {
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+  text-decoration: none;
+}
+
+.user_show_body .list_post_user a span {
+  display: flex;
+  align-items: center;
+}
+
+.user_show_body .list_post_user a span .square_icon {
+  background: url("../assets/sprite2.png") no-repeat -174px -369px;
+  width: 12px;
+  height: 12px;
+}
+
+.user_show_body .list_post_user a span p {
+  margin-left: 6px;
+}
+
+.user_show_body .post_user_show {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.user_show_body .post_user_show .container_post_user {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user img {
+  cursor: pointer;
+  width: 293px;
+  height: 293px;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user img:not(:first-child) {
+  display: none;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(var(--d87, 255, 255, 255), 1);
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  height: 54px;
+  position: fixed;
+  transition: height .2s ease-in-out;
+  width: 100%;
+  z-index: 3;
+}
+
+header .container {
+  width: 100%;
+  max-width: 975px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .container .logo {
+  margin-left: 20px;
+  background: url("../assets/sprite2.png") no-repeat -122px -226px;
+  width: 103px;
+  height: 29px;
+}
+
+header .container .search_container .search {
+  background: rgba(var(--b3f, 250, 250, 250), 1);
+  border: solid 1px rgba(var(--b6a, 219, 219, 219), 1);
+  border-radius: 3px;
+  padding: 3px 10px 3px 26px;
+  text-align: center;
+  font-size: 16px;
+}
+
+header .container nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 3px;
+}
+
+header .container nav ul a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+}
+
+header .container nav ul a .home {
+  background: url("../assets/sprite1.png") no-repeat -208px -473px;
+  width: 23px;
+  height: 23px;
+}
+
+header .container nav ul a .inbox {
+  background: url("../assets/sprite1.png") no-repeat -312px -448px;
+  width: 24px;
+  height: 21px;
+}
+
+header .container nav ul a .compass {
+  width: 24px;
+  height: 24px;
+}
+
+header .container nav ul a .heart {
+  background: url("../assets/sprite1.png") no-repeat -156px -474px;
+  width: 24px;
+  height: 22px;
+}
+
+header .container nav ul a .profil_thumbnail {
+  border: 0 solid rgba(var(--i1d, 38, 38, 38), 1);
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
 }
 
 @font-face {

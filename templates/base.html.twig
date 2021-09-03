@@ -13,9 +13,30 @@
    
 </head>
 
-<body>
-
-    {% block body %}{% endblock %}
+<body>    
+    {% block header %}
+    <header>
+        <div class="container">
+            <div class="logo"></div>
+            <div class="search_container">
+                <input class="search" type="text" autocapitalize="none" placeholder="Rechercher">
+            </div>
+            <nav>
+                <ul>
+                    <a href="/posts"><div class="home"></div></a>
+                    <a href="/posts"><div class="inbox"></div></a>
+                    <a href="/posts"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a>
+                    <a href="/posts"><div class="heart"></div></a>
+                    {% if app.user %}
+                    <a href="{{ path('users_show', {'username': app.user.username}) }}"><img class="profil_thumbnail" src="{{ asset( user.thumbnail ) }}" alt="profil thumbnail"></a>
+                    {% endif %}
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    {% endblock %}
+ {% block body %}{% endblock %}
 
 </body>
     {% block javascripts %}

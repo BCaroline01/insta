@@ -17,10 +17,19 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 /**
- * @Route("/users")
+ * @Route("/")
  */
 class UsersController extends AbstractController 
 {
+
+    public function profilthumbnail(UsersRepository $usersRepository): Response
+    {
+        return $this->render('base.html.twig', [
+            'users' => $usersRepository->findAll(),
+        ]);
+    }
+
+
     /**
      * @Route("/", name="users_index", methods={"GET"})
      */
@@ -70,8 +79,6 @@ class UsersController extends AbstractController
         
         $id_user = $user->getId();
      
-
-
         return $this->render('users/show.html.twig', [
             'user' => $user,
             'posts' => $postsRepository->findBy(['id_user' => $id_user]),

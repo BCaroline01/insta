@@ -1,39 +1,50 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}User show{% endblock %}
 
 {% block body %}
-<div class="user_show">
-    <div class="profil_img">
-        <img src="{{ asset( user.thumbnail ) }}" alt="photo"/>
+<section class="user_show_body">
+    <div class="user_show">
+        <div class="profil_img">
+            <img src="{{ asset( user.thumbnail ) }}" alt="photo"/>
+        </div>
+        <section class="profil_content">
+            <div class="username">
+                <h3>{{ user.username }}</h3> 
+                <a href="{{ path('users_edit', {'id': user.id}) }}"><button>Modifier profil</button></a>
+            </div>
+            <ul class="count">
+                <li>Nb publications</li>
+                <li>Nb abonnés</li>
+                <li>Nb abonnements</li>
+            </ul>
+            <div class="description">
+                <p>{{ user.name }}</p>
+            <p>{{ user.description }} </p> 
+            </div>
+        </section>
     </div>
-    <section class="profil_content">
-        <div class="username">
-            <h3>{{ user.username }}</h3> 
-            <a href="{{ path('users_edit', {'id': user.id}) }}"><button>Modifier profil</button></a>
-        </div>
-        <ul class="count">
-            <li>Nb publications</li>
-            <li>Nb abonnés</li>
-            <li>Nb abonnements</li>
-        </ul>
-        <div class="description">
-            <p>{{ user.name }}</p>
-        <p>{{ user.description }} </p> 
-        </div>
-    </section>
-</div>
-<div class="post_user_show">
-
-{% for post in posts %}
-        {{ post.id }}
-    {% for img in post.media %}
-        <img style="width: 150px;" src="{{ asset(img.path) }}" alt="">
-   {% endfor %}
-{% endfor %}
-     
-</div>
-
+    <div class="list_post_user">
+        <a href="">
+            <span>
+                <div class="square_icon"></div>
+                <p>PUBLICATIONS</p>
+            </span>
+        </a>
+    </div>
+    <article class="post_user_show">
+        <div class="container_post_user">
+            {% for post in posts %}
+            <div class="post_user">
+                {% for img in post.media %}
+                    <img src="{{ asset(img.path) }}" alt="">
+            {% endfor %}
+            </div>
+            {% endfor %}
+        </div>  
+    </article>
+</section>
 
 <a href="{{ path('users_index') }}">back to list</a>
 {{ include('users/_delete_form.html.twig') }}   
