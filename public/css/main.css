@@ -481,27 +481,100 @@
   margin-top: 40px;
   border-top: 1px solid rgba(var(--b38, 219, 219, 219), 1);
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
 }
 
-.user_show_body .list_post_user a {
+.user_show_body .list_post_user .square {
+  border-top: 1px solid rgba(var(--i1d, 38, 38, 38), 1);
   color: rgba(var(--i1d, 38, 38, 38), 1);
   text-decoration: none;
+  margin-right: 60px;
+  padding-top: 10px;
 }
 
-.user_show_body .list_post_user a span {
+.user_show_body .list_post_user .square span {
   display: flex;
   align-items: center;
 }
 
-.user_show_body .list_post_user a span .square_icon {
+.user_show_body .list_post_user .square span .square_icon {
   background: url("../assets/sprite2.png") no-repeat -174px -369px;
   width: 12px;
   height: 12px;
 }
 
-.user_show_body .list_post_user a span p {
+.user_show_body .list_post_user .square span p {
   margin-left: 6px;
+  text-transform: uppercase;
+}
+
+.user_show_body .list_post_user .igtv {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  text-decoration: none;
+  margin-right: 60px;
+  padding-top: 10px;
+}
+
+.user_show_body .list_post_user .igtv span {
+  display: flex;
+  align-items: center;
+}
+
+.user_show_body .list_post_user .igtv span .igtv_icon {
+  background: url("../assets/sprite2.png") no-repeat -189px -369px;
+  width: 12px;
+  height: 12px;
+}
+
+.user_show_body .list_post_user .igtv span p {
+  margin-left: 6px;
+  text-transform: uppercase;
+}
+
+.user_show_body .list_post_user .save {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  text-decoration: none;
+  margin-right: 60px;
+  padding-top: 10px;
+}
+
+.user_show_body .list_post_user .save span {
+  display: flex;
+  align-items: center;
+}
+
+.user_show_body .list_post_user .save span .save_icon {
+  background: url("../assets/sprite2.png") no-repeat 0 -389px;
+  width: 12px;
+  height: 12px;
+}
+
+.user_show_body .list_post_user .save span p {
+  margin-left: 6px;
+  text-transform: uppercase;
+}
+
+.user_show_body .list_post_user .people {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  text-decoration: none;
+  padding-top: 10px;
+}
+
+.user_show_body .list_post_user .people span {
+  display: flex;
+  align-items: center;
+}
+
+.user_show_body .list_post_user .people span .people_icon {
+  background: url("../assets/sprite2.png") no-repeat -216px -369px;
+  width: 12px;
+  height: 12px;
+}
+
+.user_show_body .list_post_user .people span p {
+  margin-left: 6px;
+  text-transform: uppercase;
 }
 
 .user_show_body .post_user_show {
@@ -573,43 +646,111 @@ header .container nav ul {
   justify-content: center;
   align-items: center;
   margin: 0 3px;
+  position: relative;
 }
 
-header .container nav ul a {
+header .container nav ul div a {
   width: 42px;
   height: 42px;
   display: flex;
   align-items: center;
 }
 
-header .container nav ul a .home {
+header .container nav ul div a .home {
   background: url("../assets/sprite1.png") no-repeat -208px -473px;
   width: 23px;
   height: 23px;
 }
 
-header .container nav ul a .inbox {
+header .container nav ul div a .inbox {
   background: url("../assets/sprite1.png") no-repeat -312px -448px;
   width: 24px;
   height: 21px;
 }
 
-header .container nav ul a .compass {
+header .container nav ul div a .compass {
   width: 24px;
   height: 24px;
 }
 
-header .container nav ul a .heart {
+header .container nav ul div a .heart {
   background: url("../assets/sprite1.png") no-repeat -156px -474px;
   width: 24px;
   height: 22px;
 }
 
-header .container nav ul a .profil_thumbnail {
+header .container nav ul div .profil_thumbnail {
   border: 0 solid rgba(var(--i1d, 38, 38, 38), 1);
   border-radius: 50%;
   height: 28px;
   width: 28px;
+}
+
+header .container nav ul #container_profil_thumbnail {
+  cursor: pointer;
+}
+
+header .container nav ul #container_profil_thumbnail #triangle {
+  display: none;
+  transition: opacity 75ms linear,transform 38ms ease-out;
+  background: rgba(var(--d87, 255, 255, 255), 1);
+  border: 1px solid #fff;
+  transform: rotate(135deg);
+  box-shadow: -2px 2px 5px -1px rgba(0, 0, 0, 0.0975);
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  left: 174px;
+  top: -5px;
+}
+
+header .container nav ul #container_profil_thumbnail #container_submenu {
+  display: none;
+  transition: opacity 75ms linear,transform 38ms ease-out;
+  background: rgba(var(--d87, 255, 255, 255), 1);
+  box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+  border-radius: 6px;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 230px;
+}
+
+header .container nav ul #container_profil_thumbnail #container_submenu .submenu .border {
+  background-color: rgba(var(--b38, 219, 219, 219), 1);
+  border: 0;
+  height: 1px;
+  margin: 0;
+  width: 100%;
+}
+
+header .container nav ul #container_profil_thumbnail #container_submenu .submenu a {
+  color: #262626;
+  padding: 8px 0;
+  display: flex;
+  text-decoration: none;
+  width: 100%;
+  height: 21px;
+}
+
+header .container nav ul #container_profil_thumbnail #container_submenu .submenu a:hover {
+  background-color: rgba(var(--b3f, 250, 250, 250), 1);
+}
+
+header .container nav ul #container_profil_thumbnail #container_submenu .submenu a img {
+  width: 16px;
+  height: 16px;
+  margin: 0 12px;
+}
+
+header .container nav ul #container_profil_thumbnail #container_submenu .submenu a p {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+header .container nav ul #container_profil_thumbnail #container_submenu .submenu a .logout {
+  margin-left: 12px;
 }
 
 @font-face {

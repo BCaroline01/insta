@@ -61,10 +61,14 @@
         margin-top: 40px;
         border-top: 1px solid rgba(var(--b38,219,219,219),1);
         display: flex;
-        justify-content: space-around;
-        a{
+        align-items: center;
+        justify-content: center;
+        .square{
+            border-top: 1px solid rgba(var(--i1d,38,38,38),1);
             color: rgba(var(--i1d,38,38,38),1);
             text-decoration: none;
+            margin-right: 60px;
+            padding-top: 10px;
             span{
                 display: flex;
                 align-items: center;
@@ -75,11 +79,67 @@
                 }
                 p{
                     margin-left: 6px;
+                    text-transform: uppercase;
                 }
             }
         }
+        .igtv{
+            color: rgba(var(--f52,142,142,142),1);
+            text-decoration: none;
+            margin-right: 60px;
+            padding-top: 10px;
+            span{
+                display: flex;
+                align-items: center;
+                .igtv_icon{
+                    background: url('../assets/sprite2.png') no-repeat -189px -369px;
+                    width: 12px;
+                    height: 12px;
+                }
+                p{
+                    margin-left: 6px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+        .save{
+            color: rgba(var(--f52,142,142,142),1);
+            text-decoration: none;
+            margin-right: 60px;
+            padding-top: 10px;
+            span{
+                display: flex;
+                align-items: center;
+                .save_icon{
+                    background: url('../assets/sprite2.png') no-repeat 0 -389px;
+                    width: 12px;
+                    height: 12px;
+                }
+                p{
+                    margin-left: 6px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+            .people{
+                color: rgba(var(--f52,142,142,142),1);
+                text-decoration: none;
+                padding-top: 10px;
+                span{
+                    display: flex;
+                    align-items: center;
+                    .people_icon{
+                        background: url('../assets/sprite2.png') no-repeat -216px -369px;
+                        width: 12px;
+                        height: 12px;
+                    }
+                    p{
+                        margin-left: 6px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
     }
-
     .post_user_show{
         margin: 20px 0;
         display: flex;

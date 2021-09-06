@@ -7,13 +7,13 @@
     {# Run `composer require symfony/webpack-encore-bundle`
     and uncomment the following Encore helpers to start using Symfony UX #}
     {% block stylesheets %}
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
     {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon_instagram.ico') }}">
 
-   
 </head>
 
-<body>    
+<body>
     {% block header %}
     <header>
         <div class="container">
@@ -23,23 +23,58 @@
             </div>
             <nav>
                 <ul>
-                    <a href="/posts"><div class="home"></div></a>
-                    <a href="/posts"><div class="inbox"></div></a>
-                    <a href="/posts"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a>
-                    <a href="/posts"><div class="heart"></div></a>
+                    <div><a href="/posts">
+                            <div class="home"></div>
+                        </a></div>
+                    <div><a href="/posts">
+                            <div class="inbox"></div>
+                        </a></div>
+                    <div><a href="/posts"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a></div>
+                    <div><a href="/posts">
+                            <div class="heart"></div>
+                        </a></div>
                     {% if app.user %}
-                    <a href="{{ path('users_show', {'username': app.user.username}) }}"><img class="profil_thumbnail" src="{{ asset( user.thumbnail ) }}" alt="profil thumbnail"></a>
+                    <div id="container_profil_thumbnail"><img
+                            class="profil_thumbnail" src="{{ asset( user.thumbnail ) }}" alt="profil thumbnail">
+                        
+                        <div id="container_submenu">
+                            <span id="triangle"></span>
+                            <div class="submenu">
+                                <a href="{{ path('users_show', {'username': app.user.username}) }}">
+                                    <img src="{{ asset('assets/profil_icon.svg') }}" alt="">
+                                    <p>Profil</p>
+                                </a>
+                                <a href="">
+                                    <img src="{{ asset('assets/save_icon.svg') }}" alt="">
+                                    <p>Enregistré</p>
+                                </a>
+                                <a href="">
+                                    <img src="{{ asset('assets/setting_icon.svg') }}" alt="">
+                                    <p>Paramètres</p>
+                                </a>
+                                <a href="">
+                                    <img src="{{ asset('assets/switch_account_icon.svg') }}" alt="">
+                                    <p>Changer de compte</p>
+                                </a>
+                                <hr class="border">
+                                <a href="">
+                                    <p class="logout">Déconnexion</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     {% endif %}
-                    
+
                 </ul>
             </nav>
         </div>
     </header>
     {% endblock %}
- {% block body %}{% endblock %}
+    {% block body %}{% endblock %}
 
 </body>
-    {% block javascripts %}
-    <script src="{{ asset('js/main.js') }}"></script>
-    {% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/nav.js') }}"></script>
+{% endblock %}
+
 </html>

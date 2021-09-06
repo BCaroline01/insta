@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}User show{% endblock %}
+{% block title %}{{ user.name  }} (@{{user.username}}) . Photos et vidéos Instagram{% endblock %}
 
 {% block body %}
 <section class="user_show_body">
@@ -15,7 +15,7 @@
                 <a href="{{ path('users_edit', {'id': user.id}) }}"><button>Modifier profil</button></a>
             </div>
             <ul class="count">
-                <li>Nb publications</li>
+                <li>{{posts|length}} publications</li>
                 <li>Nb abonnés</li>
                 <li>Nb abonnements</li>
             </ul>
@@ -26,10 +26,28 @@
         </section>
     </div>
     <div class="list_post_user">
-        <a href="">
+        <a href="" class="square">
             <span>
                 <div class="square_icon"></div>
-                <p>PUBLICATIONS</p>
+                <p>publications</p>
+            </span>
+        </a>
+        <a href="" class="igtv">
+            <span>
+                <div class="igtv_icon"></div>
+                <p>igtv</p>
+            </span>
+        </a>
+        <a href="" class="save">
+            <span>
+                <div class="save_icon"></div>
+                <p>enregistrements</p>
+            </span>
+        </a>
+        <a href="" class="people"> 
+            <span>
+                <div class="people_icon"></div>
+                <p>identifié(e)</p>
             </span>
         </a>
     </div>

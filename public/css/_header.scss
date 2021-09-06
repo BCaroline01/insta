@@ -37,37 +37,101 @@ header{
                 justify-content: center;
                 align-items: center;
                 margin: 0 3px;
-                a{
-                    width: 42px;
-                    height: 42px;
-                    display: flex;
-                    align-items: center;
-                    
-                    .home{
-                        background: url('../assets/sprite1.png') no-repeat -208px -473px;
-                        width: 23px;
-                        height: 23px;
-                    }
-                    .inbox{
-                        background: url('../assets/sprite1.png') no-repeat -312px -448px;
-                        width: 24px;
-                        height: 21px;
-                    }
-                    .compass{
-                        width: 24px;
-                        height: 24px;
-                    }
-                    .heart{
-                        background: url('../assets/sprite1.png') no-repeat -156px -474px;
-                        width: 24px;
-                        height: 22px;
-                    }
-                    .profil_thumbnail{
+                position: relative;
+                div{
+                    a{
+                        width: 42px;
+                        height: 42px;
+                        display: flex;
+                        align-items: center;
+                        .home{
+                            background: url('../assets/sprite1.png') no-repeat -208px -473px;
+                            width: 23px;
+                            height: 23px;
+                        }
+                        .inbox{
+                            background: url('../assets/sprite1.png') no-repeat -312px -448px;
+                            width: 24px;
+                            height: 21px;
+                        }
+                        .compass{
+                            width: 24px;
+                            height: 24px;
+                        }
+                        .heart{
+                            background: url('../assets/sprite1.png') no-repeat -156px -474px;
+                            width: 24px;
+                            height: 22px;
+                        }
+                       
                         
-                        border: 0 solid rgba(var(--i1d,38,38,38),1);
-                        border-radius: 50%;
-                        height: 28px;
-                        width: 28px;
+                    }
+                    .profil_thumbnail{ 
+                            border: 0 solid rgba(var(--i1d,38,38,38),1);
+                            border-radius: 50%;
+                            height: 28px;
+                            width: 28px;
+                        } 
+                }
+                #container_profil_thumbnail{ 
+                    cursor: pointer;
+                    #triangle{
+                        display: none;
+                        transition: opacity 75ms linear,transform 38ms ease-out,-webkit-transform 38ms ease-out;
+                        background: rgba(var(--d87,255,255,255),1);
+                        border: 1px solid #fff;
+                        transform: rotate(135deg);
+                        box-shadow: -2px 2px 5px -1px rgba(0, 0, 0, 0.0975);
+                        width: 14px;
+                        height: 14px;
+                        position: absolute;
+                        left: 174px;
+                        top: -5px;    
+                    }
+                    #container_submenu{
+                        display: none;
+                        transition: opacity 75ms linear,transform 38ms ease-out,-webkit-transform 38ms ease-out;
+                        background: rgba(var(--d87,255,255,255),1);
+                        box-shadow: 0 0 5px 1px rgba(var(--jb7,0,0,0),.0975);
+                        border-radius: 6px;
+                        position: absolute;
+                        top: 48px;
+                        left: 0;
+                        
+                        width: 230px;
+                        .submenu{
+                            .border{
+                                background-color: rgba(var(--b38,219,219,219),1);
+                                border: 0;
+                                height: 1px;
+                                margin: 0;
+                                width: 100%;
+                            }
+                            a{
+                                color: #262626;
+                                padding: 8px 0;
+                                display: flex;
+                                text-decoration: none;
+                                width: 100%;
+                                height: 21px;
+                                &:hover{
+                                    background-color: rgba(var(--b3f,250,250,250),1);
+                                }
+                              img{
+                                width: 16px;
+                                height: 16px;
+                                margin: 0 12px;
+                              }  
+                              p{
+                                font-size: 14px;
+                                line-height: 18px;
+                                font-weight: 400;
+                              }
+                              .logout{
+                                  margin-left: 12px;
+                              }
+                            }
+                        }
                     }
                 }
             }
