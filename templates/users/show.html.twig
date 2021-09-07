@@ -1,18 +1,25 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}{{ user.name  }} (@{{user.username}}) . Photos et vidéos Instagram{% endblock %}
+{% block title %}{{ user.name }} (@{{user.username}}) . Photos et vidéos Instagram{% endblock %}
 
 {% block body %}
 <section class="user_show_body">
     <div class="user_show">
+
         <div class="profil_img">
-            <img src="{{ asset( user.thumbnail ) }}" alt="photo"/>
+            <label for="thumbnail_input">
+                <img src="{{ asset( user.thumbnail ) }}" alt="photo" />
+            </label>
+            <form enctype="multipart/form-data" method="POST" action="{{ path('thumbnail_edit', {'username': user.username}) }}">
+                <input type="file" accept="image/jpeg,image/png" id="thumbnail_input" name="thumbnail_input" onchange="form.submit()">
+            </form>
         </div>
         <section class="profil_content">
             <div class="username">
-                <h3>{{ user.username }}</h3> 
-                <a href="{{ path('users_edit', {'id': user.id}) }}"><button>Modifier profil</button></a>
+                <h3>{{ user.username }}</h3>
+                <a href="{{ path('users_edit', {'username': user.username}) }}"><button>Modifier profil</button></a>
+                <div id="btn_setting_modal"></div>
             </div>
             <ul class="count">
                 <li>{{posts|length}} publications</li>
@@ -21,7 +28,7 @@
             </ul>
             <div class="description">
                 <p>{{ user.name }}</p>
-            <p>{{ user.description }} </p> 
+                <p>{{ user.description }} </p>
             </div>
         </section>
     </div>
@@ -44,7 +51,7 @@
                 <p>enregistrements</p>
             </span>
         </a>
-        <a href="" class="people"> 
+        <a href="" class="people">
             <span>
                 <div class="people_icon"></div>
                 <p>identifié(e)</p>
@@ -52,20 +59,22 @@
         </a>
     </div>
     <article class="post_user_show">
+         {% if posts %}
         <div class="container_post_user">
             {% for post in posts %}
             <div class="post_user">
                 {% for img in post.media %}
-                    <img src="{{ asset(img.path) }}" alt="">
-            {% endfor %}
+                <img src="{{ asset(img.path) }}" alt="">
+                {% endfor %}
             </div>
             {% endfor %}
-        </div>  
+        </div>    
+        {% else %}
+        <p class="no_post">Pas de publication</p> 
+        {% endif %}
     </article>
 </section>
 
 <a href="{{ path('users_index') }}">back to list</a>
-{{ include('users/_delete_form.html.twig') }}   
+{{ include('users/_delete_form.html.twig') }}
 {% endblock %}
-
-

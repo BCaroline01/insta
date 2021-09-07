@@ -424,12 +424,19 @@
 
 .user_show_body .user_show .profil_img {
   margin-top: 30px;
+  margin-right: 70px;
 }
 
 .user_show_body .user_show .profil_img img {
+  height: 150px;
   width: 150px;
   border-radius: 50%;
   border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
+  cursor: pointer;
+}
+
+.user_show_body .user_show .profil_img #thumbnail_input {
+  display: none;
 }
 
 .user_show_body .user_show .profil_content {
@@ -441,6 +448,7 @@
 .user_show_body .user_show .profil_content .username {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .user_show_body .user_show .profil_content .username h3 {
@@ -450,14 +458,27 @@
   line-height: 32px;
 }
 
-.user_show_body .user_show .profil_content .username button {
+.user_show_body .user_show .profil_content .username a {
+  margin-right: 10px;
+}
+
+.user_show_body .user_show .profil_content .username a button {
   cursor: pointer;
   margin-left: 20px;
   background-color: transparent;
   border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
   border-radius: 4px;
   color: rgba(var(--f75, 38, 38, 38), 1);
-  padding: 5px;
+  padding: 5px 9px;
+  font-weight: 600;
+}
+
+.user_show_body .user_show .profil_content .username #btn_setting_modal {
+  margin-left: 5px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background: url("../assets/sprite1.png") no-repeat -286px -499px;
 }
 
 .user_show_body .user_show .profil_content .count {
@@ -588,6 +609,12 @@
   text-align: center;
 }
 
+.user_show_body .post_user_show .no_post {
+  font-size: 20px;
+  font-weight: 350;
+  margin: 50px;
+}
+
 .user_show_body .post_user_show .container_post_user {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -654,6 +681,12 @@ header .container nav ul div a {
   height: 42px;
   display: flex;
   align-items: center;
+}
+
+header .container nav ul div a .add {
+  background: url("../assets/sprite1.png") no-repeat -494px -473px;
+  width: 23px;
+  height: 23px;
 }
 
 header .container nav ul div a .home {
@@ -724,6 +757,11 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   width: 100%;
 }
 
+header .container nav ul #container_profil_thumbnail #container_submenu .submenu a.profil {
+  position: relative;
+  z-index: 5;
+}
+
 header .container nav ul #container_profil_thumbnail #container_submenu .submenu a {
   color: #262626;
   padding: 8px 0;
@@ -751,6 +789,10 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
 
 header .container nav ul #container_profil_thumbnail #container_submenu .submenu a .logout {
   margin-left: 12px;
+}
+
+.new_post {
+  padding-top: 50px;
 }
 
 @font-face {

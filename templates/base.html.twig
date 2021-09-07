@@ -23,6 +23,9 @@
             </div>
             <nav>
                 <ul>
+                    <div><a href="/posts/new">
+                        <div class="add"></div>
+                    </a></div>
                     <div><a href="/posts">
                             <div class="home"></div>
                         </a></div>
@@ -35,12 +38,12 @@
                         </a></div>
                     {% if app.user %}
                     <div id="container_profil_thumbnail"><img
-                            class="profil_thumbnail" src="{{ asset( user.thumbnail ) }}" alt="profil thumbnail">
+                            class="profil_thumbnail" src="{{ asset( app.user.thumbnail ) }}" alt="profil thumbnail">
                         
                         <div id="container_submenu">
                             <span id="triangle"></span>
                             <div class="submenu">
-                                <a href="{{ path('users_show', {'username': app.user.username}) }}">
+                                <a href="{{ path('users_show', {'username': app.user.username}) }}" class="profil">
                                     <img src="{{ asset('assets/profil_icon.svg') }}" alt="">
                                     <p>Profil</p>
                                 </a>
@@ -57,7 +60,7 @@
                                     <p>Changer de compte</p>
                                 </a>
                                 <hr class="border">
-                                <a href="">
+                                <a href="{{ path('app_logout') }}">
                                     <p class="logout">Déconnexion</p>
                                 </a>
                             </div>

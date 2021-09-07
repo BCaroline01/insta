@@ -44,6 +44,11 @@ header{
                         height: 42px;
                         display: flex;
                         align-items: center;
+                        .add{
+                            background: url('../assets/sprite1.png') no-repeat -494px -473px;
+                            width: 23px;
+                            height: 23px;
+                        }
                         .home{
                             background: url('../assets/sprite1.png') no-repeat -208px -473px;
                             width: 23px;
@@ -107,6 +112,10 @@ header{
                                 margin: 0;
                                 width: 100%;
                             }
+                            a.profil{
+                                position: relative;
+                                z-index: 5;
+                            }                            
                             a{
                                 color: #262626;
                                 padding: 8px 0;

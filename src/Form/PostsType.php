@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Media;
+
 use App\Entity\Posts;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,15 +16,21 @@ class PostsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
-            ->add('media', CollectionType::class, [
-                'entry_type' =>  MediaType::class,
-                'entry_options' => ['label' => false],
-                ])
             ->add('content')
             ->add('geolocation')
-            ->add('url')
-        ; 
+            ->add('media', CollectionType::class, [
+                'entry_type' =>  MediaType::class,
+                'entry_options' =>[
+                    'label' => false
+                ],
+                'by_reference' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                
+            ]); 
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -16,7 +16,6 @@ class MediaType extends AbstractType
         $builder
             ->add('type')
             ->add('path', FileType::class)
-            ->add('id_post')
         ;
        
     }

@@ -93,6 +93,7 @@ class Users implements UserInterface
         $this->comments = new ArrayCollection();
         $this->notifComments = new ArrayCollection();
         $this->date_register = new \DateTime('now');
+        $this->thumbnail = 'assets/profil/default_picture.jpg';
         
     }
     

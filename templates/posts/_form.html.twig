@@ -1,7 +1,6 @@
 {{ form_start(form) }}
-    {% for medium in form.media %}
-        {{ form_row(medium.path) }}
-    {% endfor %}
-    {{ form_widget(form) }}
+    {{ form_row(form.content)}}
+    {{ form_row(form.geolocation)}}
+    {{ form_rest(form.media.vars.prototype)}}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

@@ -6,13 +6,19 @@
     .user_show{
         display: flex;
         justify-content: center;
-    padding-top: 50px;
+        padding-top: 50px;
         .profil_img{
-            margin-top: 30px;
+            margin-top: 30px;   
+            margin-right: 70px;
             img{
+            height: 150px;
             width: 150px;  
             border-radius: 50%;
             border: 1px solid rgba(var(--ca6,219,219,219),1); 
+            cursor: pointer;
+            }
+            #thumbnail_input{
+                display: none;
             }
         }
         .profil_content{
@@ -22,20 +28,32 @@
             .username{
                 display: flex;
                 flex-direction: row;
+                align-items: center;
                 h3{
                     color: rgba(var(--i1d,38,38,38),1);
                     font-weight: 300;
                     font-size: 28px;
                     line-height: 32px;
                 }
-                button{
+                a{
+                    margin-right: 10px;
+                    button{
+                        cursor: pointer;
+                        margin-left: 20px;
+                        background-color: transparent;
+                        border: 1px solid rgba(var(--ca6,219,219,219),1);
+                        border-radius: 4px;
+                        color: rgba(var(--f75,38,38,38),1);
+                        padding: 5px 9px;
+                        font-weight: 600;
+                    }
+                }
+                #btn_setting_modal{
+                    margin-left: 5px;
+                    width: 24px;
+                    height: 24px;
                     cursor: pointer;
-                    margin-left: 20px;
-                    background-color: transparent;
-                    border: 1px solid rgba(var(--ca6,219,219,219),1);
-                    border-radius: 4px;
-                    color: rgba(var(--f75,38,38,38),1);
-                    padding: 5px;
+                    background: url('../assets/sprite1.png') no-repeat -286px -499px;
                 }
 
             }
@@ -149,6 +167,11 @@
         justify-content: center;
         letter-spacing: 1px;
         text-align: center;
+        .no_post{
+            font-size: 20px;
+            font-weight: 350;
+            margin: 50px;
+        }
         .container_post_user{
             display: grid;
             grid-template-columns: repeat(3, 1fr);

@@ -57,12 +57,15 @@ class UsersController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             
-            
-            return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
+            if($this->getUser()){
+                $username = $this->getUser()->getUsername(); 
+                return $this->redirectToRoute('users_show', ['username' => $username]);
+            }
         }
 
         return $this->renderForm('users/new.html.twig', [
@@ -87,8 +90,47 @@ class UsersController extends AbstractController
 
     }
 
+    /**
+     * @Route("/{username}", name="thumbnail_edit", methods={"GET","POST"})
+     */
+    public function userthumbnail(Request $request, Users $user): Response
+    {
+
+            // $file stores the uploaded file
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $request->files->get('thumbnail_input');
+            $folder = 'assets/profil/';
+                
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                // $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $folder. $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('profil'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the path file name
+                $user->setThumbnail($newFilename);
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            
+            $username = $this->getUser()->getUsername(); 
+            return $this->redirectToRoute('users_show', ['username' => $username], Response::HTTP_SEE_OTHER);
+    }
+        
      /**
-     * @Route("/{id}/", name="users_edit", methods={"GET","POST"})
+     * @Route("/{username}/edit", name="users_edit", methods={"GET","POST"})
      */
     public function userprofile(Request $request, Users $user): Response
     {
@@ -107,25 +149,6 @@ class UsersController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="users_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Users $user): Response
-    {
-        $form = $this->createForm(UsersType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('users/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="users_delete", methods={"POST"})
