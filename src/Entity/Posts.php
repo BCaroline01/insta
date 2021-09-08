@@ -45,7 +45,7 @@ class Posts
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="id_post")
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="id_post", cascade={"persist"})
      */
     private $media;
 

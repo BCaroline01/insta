@@ -45,11 +45,36 @@ class PostsController extends AbstractController
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 
-        $path = new Media();
-        $path->setPath('path');
-        $post->getMedia()->add($path);
+        $medium = new Media();
+
+        // $file stores the uploaded file
+        /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $request->files->get('posts')['media']['__name__']['path'];
+            $folder = 'assets/';
+
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                // $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $folder. $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('assets'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the path file name
+                $post->getMedia()[0]->setPath($newFilename);
+            }
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
