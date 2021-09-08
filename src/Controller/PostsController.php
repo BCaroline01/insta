@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Posts;
+use App\Entity\Users;
 use App\Entity\Media;
 use App\Form\PostsType;
 use App\Repository\PostsRepository;
 use App\Repository\MediaRepository;
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +26,7 @@ class PostsController extends AbstractController
     }
 
     /**
-     * @Route("/", name="posts_index", methods={"GET"})
+     * @Route("/explore", name="explore", methods={"GET"})
      */
     public function index(MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
     {
@@ -37,49 +39,60 @@ class PostsController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="posts_new", methods={"GET","POST"})
+     * @Route("/{username}/new", name="posts_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(UsersRepository $userRepository, Request $request): Response
     {
         $post = new Posts();
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 
-        $medium = new Media();
+        
+        $username = $request->attributes->get('username');
+        $user = $userRepository->findBy(['username' => $username]);
 
         // $file stores the uploaded file
         /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
         
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $request->files->get('posts')['media']['__name__']['path'];
+          
+            $files = $request->files->get('posts')['media']['__name__']['path'];
             $folder = 'assets/';
+            foreach($files as $file){
+           
+                if ($file) {
+                    $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    // $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $folder. $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
 
-            if ($file) {
-                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                // $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $folder. $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $file->move(
+                            $this->getParameter('assets'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file upload
+                    }
+            
+                    // updates the 'brochureFilename' property to store the path file name
+                    
+                    $img = new Media;
+                    $img->setPath($newFilename);
+                    $post->addMedium($img);
+            }    
+                $post->setUrl('instagram/');
+                $post->setIdUser($user[0]);
 
-                // Move the file to the directory where brochures are stored
-                try {
-                    $file->move(
-                        $this->getParameter('assets'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochureFilename' property to store the path file name
-                $post->getMedia()[0]->setPath($newFilename);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($post);
+                $entityManager->flush();
             }
             
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($post);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('posts_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('users_show', ['username' => $username], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('posts/new.html.twig', [

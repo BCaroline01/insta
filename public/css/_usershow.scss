@@ -189,3 +189,83 @@
         }
     }
 }
+#thumbnail_modal{
+    background-color: rgba(0,0,0,.65);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    #container_thumbnail_modal{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 400px;
+        background-color: rgba(var(--f23,255,255,255),1);
+        border-radius: 12px;
+    
+        .title_thumbnail_modal{
+            text-align: center;
+            margin: 16px 32px;
+            h3{
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 24px;
+            }
+        }
+        .btn_thumbnail_modal{
+            display: flex;
+            flex-direction: column;
+            
+            #new_picture{
+                form{
+                    label{
+                    color: #0095f6;
+                    font-weight: 700;
+                    border-top: 1px solid rgba(var(--b6a,219,219,219),1);
+                    cursor: pointer;
+                    line-height: 1.5;
+                    min-height: 48px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    }
+                    input{
+                        display: none;
+                    }
+                }
+            }
+            #delete_picture{
+                border-top: 1px solid rgba(var(--b6a,219,219,219),1);
+                text-align: center;
+                min-height: 48px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+                button{
+                     color: #ed4956;
+                    font-weight: 800;
+                    border: none;
+                    cursor: pointer;
+                    line-height: 1.5;
+                    text-align: center;
+                    background-color: transparent;
+                }
+                
+            }
+            #cancel{
+                cursor: pointer;
+                background-color: transparent;
+                border-top: 1px solid rgba(var(--b6a,219,219,219),1);
+                border-right: none;
+                border-bottom: none;
+                border-left: none;
+                padding: 4px 8px;
+                min-height: 48px;
+            }
+        }
+    }
+}

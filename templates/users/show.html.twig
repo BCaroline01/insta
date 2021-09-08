@@ -7,13 +7,15 @@
 <section class="user_show_body">
     <div class="user_show">
 
-        <div class="profil_img">
+        <div id="profil_img" class="profil_img">
             <label for="thumbnail_input">
-                <img src="{{ asset( user.thumbnail ) }}" alt="photo" />
+                <img id="img_thumbnail" src="{{ asset( user.thumbnail ) }}" alt="photo" />
             </label>
+            {% if user.thumbnail == 'assets/profil/default_picture.jpg'  %}
             <form enctype="multipart/form-data" method="POST" action="{{ path('thumbnail_edit', {'username': user.username}) }}">
                 <input type="file" accept="image/jpeg,image/png" id="thumbnail_input" name="thumbnail_input" onchange="form.submit()">
-            </form>
+            </form> 
+            {% endif %}
         </div>
         <section class="profil_content">
             <div class="username">
@@ -74,7 +76,28 @@
         {% endif %}
     </article>
 </section>
-
+<section id="thumbnail_modal">
+    <div id="container_thumbnail_modal">
+        <div class="title_thumbnail_modal">
+            <h3>Modifier la photo de profil</h3>
+        </div>
+        <div class="btn_thumbnail_modal">
+            <div id="new_picture">
+                <form enctype="multipart/form-data" method="POST" action="{{ path('thumbnail_edit', {'username': user.username}) }}">
+                <label  for="thumbnail_input_modal">Importer une photo</label>
+                <input accept="image/jpeg,image/png" type="file" id="thumbnail_input_modal"  name="thumbnail_input" onchange="form.submit()">
+                </form> 
+            </div>
+            <div id="delete_picture">
+                <a href="{{ path('thumbnail_delete', {'username': user.username}) }}">
+                    <button >Supprimer la photo actuelle</button>
+                </a>
+            </div>
+            <button id="cancel">Annuler</button>
+        </div>
+    </div>
+</section>
 <a href="{{ path('users_index') }}">back to list</a>
 {{ include('users/_delete_form.html.twig') }}
+<script src="{{ asset('js/user_show.js') }}"></script>
 {% endblock %}

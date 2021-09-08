@@ -57,7 +57,6 @@ class UsersController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -128,6 +127,23 @@ class UsersController extends AbstractController
             $username = $this->getUser()->getUsername(); 
             return $this->redirectToRoute('users_show', ['username' => $username], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/{username}/deletethumbnail", name="thumbnail_delete", methods={"GET","POST"})
+     */
+    public function deletethumbnail(Request $request, Users $user): Response
+    {
+            
+            $this->getUser()->setThumbnail('assets/profil/default_picture.jpg');
+            
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            
+            $username = $this->getUser()->getUsername(); 
+            return $this->redirectToRoute('users_show', ['username' => $username], Response::HTTP_SEE_OTHER);
+    }
         
      /**
      * @Route("/{username}/edit", name="users_edit", methods={"GET","POST"})
@@ -151,7 +167,7 @@ class UsersController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="users_delete", methods={"POST"})
+     * @Route("/{username}", name="users_delete", methods={"POST"})
      */
     public function delete(Request $request, Users $user): Response
     {

@@ -54,11 +54,17 @@ class Posts
      */
     private $hashtagsPosts;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $publication_date;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->media = new ArrayCollection();
         $this->hashtagsPosts = new ArrayCollection();
+        $this->publication_date = new \DateTime('now');
     }
 
     public function getId(): ?int
@@ -201,6 +207,18 @@ class Posts
                 $hashtagsPost->setIdPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPublicationDate(): ?\DateTimeInterface
+    {
+        return $this->publication_date;
+    }
+
+    public function setPublicationDate(\DateTimeInterface $publication_date): self
+    {
+        $this->publication_date = $publication_date;
 
         return $this;
     }

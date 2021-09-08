@@ -3,19 +3,16 @@
 {% block title %}Posts index{% endblock %}
 
 {% block body %}
-<h1>Posts index</h1>
+<article class="body_post_explore">
+   <div class="container_post_explore">
+       {% for post in posts %}
+       <div class="post_explore">
+           {% for img in post.media %}
+           <img src="{{ asset(img.path) }}" alt="">
+           {% endfor %}
+       </div>
+       {% endfor %}
+   </div>    
+</article>
 
-{% for medium in media %}
-
-    <img style="width: 150px;" src="assets/{{ medium.path }}" alt="">
-    {% for post in posts %}
-        {{ post.content }}
-        {{ post.geolocation }}
-        <a href="{{ path('posts_edit', {'id': post.id}) }}">edit</a>
-    {% else %}
-    no records found
-
-    {% endfor %}
-{% endfor %}
-<a href="{{ path('posts_new') }}">Create new</a>
 {% endblock %}

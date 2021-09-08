@@ -1,0 +1,26 @@
+
+    .body_post_explore{
+        padding-top: 100px;
+        display: flex;
+        flex-direction: row;
+        font-size: 12px;
+        font-weight: 600;
+        justify-content: center;
+        letter-spacing: 1px;
+        text-align: center;
+        .container_post_explore{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            .post_explore{
+                img{
+                    cursor: pointer;
+                    width: 293px;
+                    height: 293px;
+                    &:not(:first-child){
+                        display: none;
+                    }
+                }
+            }
+        }
+    }

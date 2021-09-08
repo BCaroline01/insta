@@ -15,6 +15,7 @@
 
 <body>
     {% block header %}
+    {% if app.user %}
     <header>
         <div class="container">
             <div class="logo"></div>
@@ -23,7 +24,7 @@
             </div>
             <nav>
                 <ul>
-                    <div><a href="/posts/new">
+                    <div><a href="{{ path('posts_new', {'username': app.user.username}) }}">
                         <div class="add"></div>
                     </a></div>
                     <div><a href="/posts">
@@ -32,7 +33,7 @@
                     <div><a href="/posts">
                             <div class="inbox"></div>
                         </a></div>
-                    <div><a href="/posts"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a></div>
+                    <div><a href="{{ path('explore')}}"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a></div>
                     <div><a href="/posts">
                             <div class="heart"></div>
                         </a></div>
@@ -71,7 +72,8 @@
                 </ul>
             </nav>
         </div>
-    </header>
+    </header> 
+    {% endif %}
     {% endblock %}
     {% block body %}{% endblock %}
 
