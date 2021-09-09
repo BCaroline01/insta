@@ -27,7 +27,7 @@
                     <div><a href="{{ path('posts_new', {'username': app.user.username}) }}">
                         <div class="add"></div>
                     </a></div>
-                    <div><a href="/posts">
+                    <div><a href="{{ path('home', {'username': app.user.username}) }}">
                             <div class="home"></div>
                         </a></div>
                     <div><a href="/posts">

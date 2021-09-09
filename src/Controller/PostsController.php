@@ -28,7 +28,7 @@ class PostsController extends AbstractController
     /**
      * @Route("/explore", name="explore", methods={"GET"})
      */
-    public function index(MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
+    public function explore(MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
     {
 
 
@@ -37,6 +37,10 @@ class PostsController extends AbstractController
             'posts' => $postsRepository->findAll(),
         ]);
     }
+
+
+
+
 
     /**
      * @Route("/{username}/new", name="posts_new", methods={"GET","POST"})
@@ -56,60 +60,48 @@ class PostsController extends AbstractController
         
 
         if ($form->isSubmitted() && $form->isValid()) {
-          
-            $files = $request->files->get('posts')['media']['__name__']['path'];
+            $file = $request->files->get('posts')['media']['__name__']['path'];
             $folder = 'assets/';
-            foreach($files as $file){
-           
-                if ($file) {
-                    $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                    // this is needed to safely include the file name as part of the URL
-                    // $safeFilename = $slugger->slug($originalFilename);
-                    $newFilename = $folder. $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
 
-                    // Move the file to the directory where brochures are stored
-                    try {
-                        $file->move(
-                            $this->getParameter('assets'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        // ... handle exception if something happens during file upload
-                    }
-            
-                    // updates the 'brochureFilename' property to store the path file name
-                    
-                    $img = new Media;
-                    $img->setPath($newFilename);
-                    $post->addMedium($img);
-            }    
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                // $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $folder. $originalFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('assets'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the path file name
+                $post->getMedia()[0]->setPath($newFilename);
+            }
                 $post->setUrl('instagram/');
                 $post->setIdUser($user[0]);
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($post);
                 $entityManager->flush();
-            }
+            
             
 
             return $this->redirectToRoute('users_show', ['username' => $username], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('posts/new.html.twig', [
-            'post' => $post,
-            'form' => $form,
-        ]);
-    }
+                    'post' => $post,
+                    'form' => $form,
+                ]);
 
-    /**
-     * @Route("/{id}", name="posts_show", methods={"GET"})
-     */
-    public function show(Posts $post): Response
-    {
-        return $this->render('posts/show.html.twig', [
-            'post' => $post,
-        ]);
-    }
+
+    }   
+
 
     /**
      * @Route("/{id}/edit", name="posts_edit", methods={"GET","POST"})

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ user.name }} (@{{user.username}}) . Home {% endblock %}
+
+{% block body %}
+<section class="home_page">
+    {% for user_post in users_post %}
+    {% for post in user_post.posts %}
+    <article class="post_home">
+        <div class="container_post_home">
+            <div class="header_home">
+                <div class="user_header_home">
+                    <img src="{{ asset(user_post.thumbnail) }}" alt="picture profile">
+                    <a href="">{{ user_post.username }}</a>
+                </div>
+                <button><div class="circle"></div></button>
+            </div>
+            <div class="post_img">
+                {% for img in post.media %}
+                <img src="{{ asset(img.path) }}" alt="">
+                {% endfor %}
+            </div>
+            <div class="share">
+                <div class="icons">
+                    <div class="icons_share">
+                        <button><div class="like_icon"></div></button>
+                        <button><div class="comment_icon"></div></button>
+                        <button><div class="send_icon"></div></button>
+                    </div>
+                    <button><div class="save_icon"></div></button>
+                </div>
+                <div class="like">
+                    <button><p>28 084 J'aime</p></button>
+                </div>
+                <div class="content">
+                    <p><a href="">{{ user_post.username }}</a> {{post.content}}</p>
+                </div>
+               <div class="comment">
+                    <p><a href="">Nom_user_comment</a> comment</p>
+                   
+               </div>
+               <div class="time">
+                <p>IL Y A .. HEURES OU JOURS</p>
+               </div>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+    {% endfor %}
+</section>
+{% endblock %}

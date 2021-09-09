@@ -4,15 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Media;
 use App\Entity\Posts;
-use App\Repository\PostsRepository;
-use App\Repository\MediaRepository;
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Entity\Followers;
+use App\Repository\MediaRepository;
+use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\FollowersRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -76,15 +78,36 @@ class UsersController extends AbstractController
     /**
      * @Route("/{username}", name="users_show", methods={"GET"})
      */
-    public function show(Users $user, MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
+    public function show(Users $user, PostsRepository $postsRepository): Response
     {
         
         $id_user = $user->getId();
-     
+        
         return $this->render('users/show.html.twig', [
             'user' => $user,
             'posts' => $postsRepository->findBy(['id_user' => $id_user]),
+            
+        ]);
 
+    }
+
+    /**
+     * @Route("/{username}/home}", name="home", methods={"GET"})
+     */
+    public function home(Users $user,UsersRepository $usersRepository, FollowersRepository $FollowersRepository, PostsRepository $postsRepository): Response
+    {
+        
+        $id_user = $user->getId();
+        
+        $followersarray =$FollowersRepository->findBy(['id_user' => $id_user]); 
+
+        foreach($followersarray as $follower ){
+            $id_followers[] = $follower->getFollower();
+        }
+
+        return $this->render('users/home.html.twig', [
+            'user' => $user,
+            'users_post' => $usersRepository->findBy(['id' => $id_followers]),
         ]);
 
     }
