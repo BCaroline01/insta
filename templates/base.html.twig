@@ -18,7 +18,7 @@
     {% if app.user %}
     <header>
         <div class="container">
-            <div class="logo"></div>
+            <a href="{{ path('home', {'username': app.user.username}) }}"><div class="logo"></div></a>
             <div class="search_container">
                 <input class="search" type="text" autocapitalize="none" placeholder="Rechercher">
             </div>
@@ -30,11 +30,11 @@
                     <div><a href="{{ path('home', {'username': app.user.username}) }}">
                             <div class="home"></div>
                         </a></div>
-                    <div><a href="/posts">
+                    <div><a href="">
                             <div class="inbox"></div>
                         </a></div>
                     <div><a href="{{ path('explore')}}"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a></div>
-                    <div><a href="/posts">
+                    <div><a href="">
                             <div class="heart"></div>
                         </a></div>
                     {% if app.user %}

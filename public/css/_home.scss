@@ -135,13 +135,41 @@
                     } 
                 }
                 .time {
-                    margin: 5px 15px;
+                    margin: 5px 15px 15px 15px;
                     p{
                         color: #8e8e8e;
                         font-size: 10px;
                         letter-spacing: .2px;
                     }
                 }            
+            }
+            .add_comment{
+                padding-left: 16px;
+                padding-right: 16px;
+                border-top: 1px solid #efefef;
+                form{
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    margin: 10px 0;
+                    textarea{
+                       font-family: 'Segoe UI', sans-serif; 
+                        border: none;
+                        max-height: 80px;
+                        resize: none;
+                        display: flex;
+                        align-items: center;
+                        background-color: transparent;
+                        box-sizing: border-box;
+                        &:focus { outline: none; }
+                    }
+                    button{
+                        border: none;
+                        background-color: transparent;
+                        color: #0095f6;
+                        font-weight: 600;
+                    }
+                }
             }
         }
     }

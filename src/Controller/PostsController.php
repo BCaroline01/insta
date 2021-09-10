@@ -39,9 +39,6 @@ class PostsController extends AbstractController
     }
 
 
-
-
-
     /**
      * @Route("/{username}/new", name="posts_new", methods={"GET","POST"})
      */

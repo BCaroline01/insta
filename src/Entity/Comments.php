@@ -91,24 +91,24 @@ class Comments
         return $this;
     }
 
-    public function getIdPost(): ?Posts
+    public function getIdPost()
     {
         return $this->id_post;
     }
 
-    public function setIdPost(?Posts $id_post): self
+    public function setIdPost($id_post): self
     {
         $this->id_post = $id_post;
 
         return $this;
     }
 
-    public function getIdUser(): ?Users
+    public function getIdUser()
     {
         return $this->id_user;
     }
 
-    public function setIdUser(?Users $id_user): self
+    public function setIdUser( $id_user): self
     {
         $this->id_user = $id_user;
 

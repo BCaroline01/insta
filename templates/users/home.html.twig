@@ -5,6 +5,7 @@
 
 {% block body %}
 <section class="home_page">
+    {% if users_post %}
     {% for user_post in users_post %}
     {% for post in user_post.posts %}
     <article class="post_home">
@@ -44,9 +45,20 @@
                 <p>IL Y A .. HEURES OU JOURS</p>
                </div>
             </div>
+            <div class="add_comment">
+                <form action="{{ path('comments_new', {'username': app.user.username}) }}" method="POST">
+                    <input type="hidden" name="post_id" value= {{ post.id }}>
+                    <input type="hidden" name="user_id" value= {{ app.user.id }}>
+                    <textarea cols="100" name="comment_text" autocomplete="off" placeholder="Ajouter un commentaire..."></textarea>
+                    <button type="submit" name="submit">Publier</button>
+                </form>
+            </div>
         </div>
     </article>
     {% endfor %}
     {% endfor %}
+    {% else %}
+        <p>Abonnez vous!</p>  
+    {% endif %}
 </section>
 {% endblock %}

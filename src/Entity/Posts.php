@@ -72,6 +72,7 @@ class Posts
         return $this->id;
     }
 
+
     public function getContent(): ?string
     {
         return $this->content;

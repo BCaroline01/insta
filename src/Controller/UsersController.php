@@ -98,18 +98,25 @@ class UsersController extends AbstractController
     {
         
         $id_user = $user->getId();
+
         
-        $followersarray =$FollowersRepository->findBy(['id_user' => $id_user]); 
+            $followersarray =$FollowersRepository->findBy(['id_user' => $id_user]); 
+        if(empty($followersarray) ){
+            return $this->render('users/home.html.twig', [
+                'user' => $user,
+                'users_post' => null,
+            ]);
+        }else{
 
-        foreach($followersarray as $follower ){
-            $id_followers[] = $follower->getFollower();
+            foreach($followersarray as $follower ){
+                $id_followers[] = $follower->getFollower();
+            }
+        
+            return $this->render('users/home.html.twig', [
+                'user' => $user,
+                'users_post' => $usersRepository->findBy(['id' => $id_followers]),
+            ]);
         }
-
-        return $this->render('users/home.html.twig', [
-            'user' => $user,
-            'users_post' => $usersRepository->findBy(['id' => $id_followers]),
-        ]);
-
     }
 
     /**

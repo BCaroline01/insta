@@ -1060,13 +1060,48 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
 }
 
 .home_page .post_home .container_post_home .share .time {
-  margin: 5px 15px;
+  margin: 5px 15px 15px 15px;
 }
 
 .home_page .post_home .container_post_home .share .time p {
   color: #8e8e8e;
   font-size: 10px;
   letter-spacing: .2px;
+}
+
+.home_page .post_home .container_post_home .add_comment {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-top: 1px solid #efefef;
+}
+
+.home_page .post_home .container_post_home .add_comment form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.home_page .post_home .container_post_home .add_comment form textarea {
+  font-family: 'Segoe UI', sans-serif;
+  border: none;
+  max-height: 80px;
+  resize: none;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.home_page .post_home .container_post_home .add_comment form textarea:focus {
+  outline: none;
+}
+
+.home_page .post_home .container_post_home .add_comment form button {
+  border: none;
+  background-color: transparent;
+  color: #0095f6;
+  font-weight: 600;
 }
 
 @font-face {
