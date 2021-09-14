@@ -25,21 +25,28 @@
             <div class="share">
                 <div class="icons">
                     <div class="icons_share">
-                        <button><div class="like_icon"></div></button>
-                        <button><div class="comment_icon"></div></button>
-                        <button><div class="send_icon"></div></button>
+                        <a href="{{ path('post_like', {'id': post.id}) }}" class="js-like">
+                            {% if app.user and post.isLikedByUser(app.user) %}
+                            <div class="heart like_icon_red"></div>
+                            {% else %}
+                            <div class="heart like_icon"></div>
+                            {% endif %}
+                            </a>
+                        <a><div class="comment_icon"></div></a>
+                        <a><div class="send_icon"></div></a>
                     </div>
                     <button><div class="save_icon"></div></button>
                 </div>
-                <div class="like">
-                    <button><p>28 084 J'aime</p></button>
+                <div class="likes">
+                    <button><p class="nb-js-like">{{post.likes | length}} J'aime</p></button>
                 </div>
                 <div class="content">
                     <p><a href="">{{ user_post.username }}</a> {{post.content}}</p>
                 </div>
                <div class="comment">
-                    <p><a href="">Nom_user_comment</a> comment</p>
-                   
+                   {% for comment in post.comments %}
+                    <p><a href="">username</a> {{ comment.text }}</p>
+                   {% endfor %}
                </div>
                <div class="time">
                 <p>IL Y A .. HEURES OU JOURS</p>

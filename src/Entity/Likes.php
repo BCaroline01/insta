@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\LikeRepository;
+use App\Repository\LikesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=LikeRepository::class)
- * @ORM\Table(name="`like`")
+ * @ORM\Entity(repositoryClass=LikesRepository::class)
  */
-class Like
+class Likes
 {
     /**
      * @ORM\Id
@@ -19,14 +18,12 @@ class Like
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Posts::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Posts::class, inversedBy="likes")
      */
     private $id_post;
 
     /**
-     * @ORM\ManyToOne(targetEntity=USers::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="likes")
      */
     private $id_user;
 
@@ -47,12 +44,12 @@ class Like
         return $this;
     }
 
-    public function getIdUser(): ?USers
+    public function getIdUser(): ?Users
     {
         return $this->id_user;
     }
 
-    public function setIdUser(?USers $id_user): self
+    public function setIdUser(?Users $id_user): self
     {
         $this->id_user = $id_user;
 

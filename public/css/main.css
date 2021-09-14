@@ -982,7 +982,7 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   align-items: center;
 }
 
-.home_page .post_home .container_post_home .share .icons .icons_share button {
+.home_page .post_home .container_post_home .share .icons .icons_share a {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -993,19 +993,25 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   height: 40px;
 }
 
-.home_page .post_home .container_post_home .share .icons .icons_share button .like_icon {
+.home_page .post_home .container_post_home .share .icons .icons_share a .like_icon_red {
+  background: url("../assets/sprite1.png") no-repeat -130px -474px;
+  width: 24px;
+  height: 22px;
+}
+
+.home_page .post_home .container_post_home .share .icons .icons_share a .like_icon {
   background: url("../assets/sprite1.png") no-repeat -156px -474px;
   width: 24px;
   height: 22px;
 }
 
-.home_page .post_home .container_post_home .share .icons .icons_share button .comment_icon {
+.home_page .post_home .container_post_home .share .icons .icons_share a .comment_icon {
   background: url("../assets/sprite1.png") no-repeat -208px -447px;
   width: 24px;
   height: 24px;
 }
 
-.home_page .post_home .container_post_home .share .icons .icons_share button .send_icon {
+.home_page .post_home .container_post_home .share .icons .icons_share a .send_icon {
   background: url("../assets/sprite1.png") no-repeat -312px -448px;
   width: 24px;
   height: 21px;
@@ -1028,7 +1034,7 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   height: 24px;
 }
 
-.home_page .post_home .container_post_home .share .like button {
+.home_page .post_home .container_post_home .share .likes button {
   cursor: pointer;
   font-weight: 600;
   color: #262626;

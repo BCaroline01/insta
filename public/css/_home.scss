@@ -63,7 +63,7 @@
                     .icons_share{
                         display: flex;
                         align-items: center;
-                        button{
+                        a{
                             cursor: pointer;
                             display: flex;
                             align-items: center;
@@ -72,6 +72,12 @@
                             border: none;
                             width: 40px;
                             height: 40px;
+                            .like_icon_red{
+                                background: url('../assets/sprite1.png') no-repeat -130px -474px;
+                                width: 24px;
+                                height: 22px;
+                               
+                            }
                             .like_icon{
                                 background: url('../assets/sprite1.png') no-repeat -156px -474px;
                                 width: 24px;
@@ -106,7 +112,7 @@
                         } 
                     }
                 }
-                .like{
+                .likes{
                     button{
                         cursor: pointer;
                         font-weight: 600;

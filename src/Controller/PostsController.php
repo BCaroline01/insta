@@ -2,17 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Media;
 use App\Entity\Posts;
 use App\Entity\Users;
-use App\Entity\Media;
+use App\Entity\Likes;
 use App\Form\PostsType;
-use App\Repository\PostsRepository;
+use App\Repository\LikesRepository;
 use App\Repository\MediaRepository;
+use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mime\Message;
 
 /**
  * @Route("/posts")
@@ -99,7 +103,6 @@ class PostsController extends AbstractController
 
     }   
 
-
     /**
      * @Route("/{id}/edit", name="posts_edit", methods={"GET","POST"})
      */
@@ -132,5 +135,55 @@ class PostsController extends AbstractController
         }
 
         return $this->redirectToRoute('posts_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    
+    /**
+     * like or unlike a post
+     *
+     * @param  App\Entity\Posts;
+     * @param  Doctrine\Persistence\ObjectManager;
+     * @param  App\Repository\LikesRepository;
+     * @return Symfony\Component\HttpFoundation\Response
+     */
+     /**
+     * @Route("/{id}/like", name="post_like", methods={"GET"})
+     */
+    public function like(Posts $post, LikesRepository $likeRepository): Response
+    {
+     
+        $user = $this->getUser();
+
+        if(!$user) return $this->json([
+            'Message' => 'Unauthorized'
+        ], 403);
+
+        if($post->isLikedByUser($user)){
+            $like = $likeRepository->findOneBy([
+                'id_post' => $post,
+                'id_user' => $user,
+            ]);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($like);
+            $entityManager->flush();
+
+            return $this->json([
+                'message' => 'Like delete',
+                'likes' => $likeRepository->count(['id_post' => $post])
+            ], 200);
+        }
+
+        $like = new Likes;
+        $like->setIdPost($post);
+        $like->setIdUser($user);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($like);
+        $entityManager->flush();
+
+       return $this->json([
+           'Message' => 'Like add',
+           'likes' => $likeRepository->count(['id_post' => $post])
+       ], 200);
     }
 }

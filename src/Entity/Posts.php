@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\PostsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Users;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PostsRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
@@ -59,12 +60,18 @@ class Posts
      */
     private $publication_date;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Likes::class, mappedBy="id_post")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->media = new ArrayCollection();
         $this->hashtagsPosts = new ArrayCollection();
         $this->publication_date = new \DateTime('now');
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,5 +229,49 @@ class Posts
         $this->publication_date = $publication_date;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Likes[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Likes $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setIdPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getIdPost() === $this) {
+                $like->setIdPost(null);
+            }
+        }
+
+        return $this;
+    }
+     
+     /**
+      * function to know if a user like the post
+      *
+      * @param  Users $user
+      * @return bool
+      */
+     public function isLikedByUser(Users $user) : bool
+    {
+        foreach($this->likes as $like){
+            if($like->getIdUser() === $user) return true;
+        }
+        return false;
     }
 }

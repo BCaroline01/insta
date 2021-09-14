@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Media;
 use App\Entity\Posts;
 use App\Entity\Users;
@@ -78,15 +79,38 @@ class UsersController extends AbstractController
     /**
      * @Route("/{username}", name="users_show", methods={"GET"})
      */
-    public function show(Users $user, PostsRepository $postsRepository): Response
+    public function show(Users $user, PostsRepository $postsRepository, UsersRepository $usersRepository, FollowersRepository $FollowersRepository): Response
     {
         
         $id_user = $user->getId();
-        
+
+        /// find the follower by id_user
+        $followersarray = $FollowersRepository->findBy(['id_user' => $id_user]);
+        if(!empty($followersarray )){
+            foreach($followersarray as $follower ){
+                $id_followers[] = $follower->getFollower();
+            }
+        }else{
+            $id_followers = 0;
+        }
+
+        /// find people who follow by id_user
+
+        $followarray =$FollowersRepository->findBy(['follower' => $id_user]);
+        if(!empty($followarray )){
+            foreach($followarray as $follow ){
+                $id_follow[] = $follow->getFollower();
+            }
+        }else{
+            $id_follow = 0;
+        }
+       
+
         return $this->render('users/show.html.twig', [
             'user' => $user,
             'posts' => $postsRepository->findBy(['id_user' => $id_user]),
-            
+            'followers' => $usersRepository->findBy(['id' => $id_followers]),
+            'follow' => $usersRepository->findBy(['id' => $id_follow]),
         ]);
 
     }
@@ -98,6 +122,7 @@ class UsersController extends AbstractController
     {
         
         $id_user = $user->getId();
+
 
         
             $followersarray =$FollowersRepository->findBy(['id_user' => $id_user]); 
@@ -115,6 +140,7 @@ class UsersController extends AbstractController
             return $this->render('users/home.html.twig', [
                 'user' => $user,
                 'users_post' => $usersRepository->findBy(['id' => $id_followers]),
+             
             ]);
         }
     }

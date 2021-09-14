@@ -86,6 +86,11 @@ class Users implements UserInterface
      */
     private $date_register;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Likes::class, mappedBy="id_user")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -94,6 +99,7 @@ class Users implements UserInterface
         $this->notifComments = new ArrayCollection();
         $this->date_register = new \DateTime('now');
         $this->thumbnail = 'assets/profil/default_picture.jpg';
+        $this->likes = new ArrayCollection();
     }
     
 
@@ -343,6 +349,36 @@ class Users implements UserInterface
     public function setDateRegister(\DateTimeInterface $date_register): self
     {
         $this->date_register = $date_register;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Likes[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Likes $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getIdUser() === $this) {
+                $like->setIdUser(null);
+            }
+        }
 
         return $this;
     }
