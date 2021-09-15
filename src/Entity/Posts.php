@@ -58,12 +58,17 @@ class Posts
     /**
      * @ORM\Column(type="datetime")
      */
-    private $publication_date;
+    public $publication_date;
 
     /**
      * @ORM\OneToMany(targetEntity=Likes::class, mappedBy="id_post")
      */
     private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PostsSave::class, mappedBy="id_post", orphanRemoval=true)
+     */
+    private $postsSaves;
 
     public function __construct()
     {
@@ -72,6 +77,7 @@ class Posts
         $this->hashtagsPosts = new ArrayCollection();
         $this->publication_date = new \DateTime('now');
         $this->likes = new ArrayCollection();
+        $this->postsSaves = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,4 +280,34 @@ class Posts
         }
         return false;
     }
+
+     /**
+      * @return Collection|PostsSave[]
+      */
+     public function getPostsSaves(): Collection
+     {
+         return $this->postsSaves;
+     }
+
+     public function addPostsSave(PostsSave $postsSave): self
+     {
+         if (!$this->postsSaves->contains($postsSave)) {
+             $this->postsSaves[] = $postsSave;
+             $postsSave->setIdPost($this);
+         }
+
+         return $this;
+     }
+
+     public function removePostsSave(PostsSave $postsSave): self
+     {
+         if ($this->postsSaves->removeElement($postsSave)) {
+             // set the owning side to null (unless already changed)
+             if ($postsSave->getIdPost() === $this) {
+                 $postsSave->setIdPost(null);
+             }
+         }
+
+         return $this;
+     }
 }

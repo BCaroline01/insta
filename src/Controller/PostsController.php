@@ -2,21 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Likes;
 use App\Entity\Media;
 use App\Entity\Posts;
 use App\Entity\Users;
-use App\Entity\Likes;
 use App\Form\PostsType;
 use App\Repository\LikesRepository;
 use App\Repository\MediaRepository;
 use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
+use Symfony\Component\Mime\Message;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mime\Message;
 
 /**
  * @Route("/posts")
@@ -30,15 +30,18 @@ class PostsController extends AbstractController
     }
 
     /**
-     * @Route("/explore", name="explore", methods={"GET"})
+     * @Route("/explore/{username}", name="explore", methods={"GET"})
      */
-    public function explore(MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
+    public function explore(Request $request, UsersRepository $userRepository, MediaRepository $mediaRepository, PostsRepository $postsRepository): Response
     {
+        $username = $request->attributes->get('username');
+        $user = $userRepository->findBy(['username' => $username]);
+        $userId = $user[0]->getId();
 
-
-        return $this->render('posts/index.html.twig', [
+        return $this->render('posts/explore.html.twig', [
             'media' => $mediaRepository->findAll(),
-            'posts' => $postsRepository->findAll(),
+            'users' => $userRepository->findAll(),
+            'posts' => $postsRepository->findAllExceptUser($userId),
         ]);
     }
 
@@ -186,4 +189,6 @@ class PostsController extends AbstractController
            'likes' => $likeRepository->count(['id_post' => $post])
        ], 200);
     }
+
+   
 }

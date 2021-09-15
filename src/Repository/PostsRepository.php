@@ -19,22 +19,22 @@ class PostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Posts::class);
     }
 
+    
+
     // /**
     //  * @return Posts[] Returns an array of Posts objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findAllExceptUser($value)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+            ->where('p.id_user != :val')
             ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+ 
 
     /*
     public function findOneBySomeField($value): ?Posts

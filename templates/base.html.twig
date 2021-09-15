@@ -33,7 +33,7 @@
                     <div><a href="">
                             <div class="inbox"></div>
                         </a></div>
-                    <div><a href="{{ path('explore')}}"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a></div>
+                    <div><a href="{{ path('explore', {'username': app.user.username}) }}"><img class="compass" src="{{ asset('assets/explore.png') }}" alt=""></a></div>
                     <div><a href="">
                             <div class="heart"></div>
                         </a></div>
@@ -82,6 +82,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="{{ asset('js/like.js') }}"></script>
 <script src="{{ asset('js/nav.js') }}"></script>
+<script src="{{ asset('js/savepost.js') }}"></script>
 {% endblock %}
 
 </html>

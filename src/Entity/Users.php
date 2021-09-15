@@ -91,6 +91,11 @@ class Users implements UserInterface
      */
     private $likes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=PostsSave::class, mappedBy="id_user", orphanRemoval=true)
+     */
+    private $postsSaves;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -100,6 +105,7 @@ class Users implements UserInterface
         $this->date_register = new \DateTime('now');
         $this->thumbnail = 'assets/profil/default_picture.jpg';
         $this->likes = new ArrayCollection();
+        $this->postsSaves = new ArrayCollection();
     }
     
 
@@ -377,6 +383,36 @@ class Users implements UserInterface
             // set the owning side to null (unless already changed)
             if ($like->getIdUser() === $this) {
                 $like->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PostsSave[]
+     */
+    public function getPostsSaves(): Collection
+    {
+        return $this->postsSaves;
+    }
+
+    public function addPostsSave(PostsSave $postsSave): self
+    {
+        if (!$this->postsSaves->contains($postsSave)) {
+            $this->postsSaves[] = $postsSave;
+            $postsSave->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostsSave(PostsSave $postsSave): self
+    {
+        if ($this->postsSaves->removeElement($postsSave)) {
+            // set the owning side to null (unless already changed)
+            if ($postsSave->getIdUser() === $this) {
+                $postsSave->setIdUser(null);
             }
         }
 

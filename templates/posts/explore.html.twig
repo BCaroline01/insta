@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts index{% endblock %}
+
+{% block body %}
+<article class="body_post_explore">
+   <div class="container_post_explore">
+       {% for post in posts %}     
+            <div class="post_explore">
+                {% for img in post.media %}
+                <img src="{{ asset(img.path) }}" alt="">
+                {% endfor %}
+            </div>
+        {% endfor %}
+   </div>    
+</article>
+{% endblock %}

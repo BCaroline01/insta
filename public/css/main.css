@@ -1017,7 +1017,7 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   height: 21px;
 }
 
-.home_page .post_home .container_post_home .share .icons button {
+.home_page .post_home .container_post_home .share .icons a {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1028,7 +1028,7 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   height: 40px;
 }
 
-.home_page .post_home .container_post_home .share .icons button .save_icon {
+.home_page .post_home .container_post_home .share .icons a .save_icon {
   background: url("../assets/sprite1.png") no-repeat -211px -499px;
   width: 19px;
   height: 24px;
@@ -1056,10 +1056,15 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
 
 .home_page .post_home .container_post_home .share .comment {
   display: flex;
+  flex-direction: column;
   margin: 5px 15px;
 }
 
-.home_page .post_home .container_post_home .share .comment a {
+.home_page .post_home .container_post_home .share .comment p {
+  padding-bottom: 5px;
+}
+
+.home_page .post_home .container_post_home .share .comment p a {
   text-decoration: none;
   font-weight: 600;
   color: #262626;
@@ -1069,10 +1074,12 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   margin: 5px 15px 15px 15px;
 }
 
-.home_page .post_home .container_post_home .share .time p {
+.home_page .post_home .container_post_home .share .time a {
   color: #8e8e8e;
   font-size: 10px;
   letter-spacing: .2px;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .home_page .post_home .container_post_home .add_comment {
