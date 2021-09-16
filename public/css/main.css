@@ -506,26 +506,27 @@
   justify-content: center;
 }
 
-.user_show_body .list_post_user .square {
+.user_show_body .list_post_user #square_post_user {
   border-top: 1px solid rgba(var(--i1d, 38, 38, 38), 1);
   color: rgba(var(--i1d, 38, 38, 38), 1);
   text-decoration: none;
   margin-right: 60px;
   padding-top: 10px;
+  cursor: pointer;
 }
 
-.user_show_body .list_post_user .square span {
+.user_show_body .list_post_user #square_post_user span {
   display: flex;
   align-items: center;
 }
 
-.user_show_body .list_post_user .square span .square_icon {
+.user_show_body .list_post_user #square_post_user span .square_icon {
   background: url("../assets/sprite2.png") no-repeat -174px -369px;
   width: 12px;
   height: 12px;
 }
 
-.user_show_body .list_post_user .square span p {
+.user_show_body .list_post_user #square_post_user span p {
   margin-left: 6px;
   text-transform: uppercase;
 }
@@ -535,6 +536,7 @@
   text-decoration: none;
   margin-right: 60px;
   padding-top: 10px;
+  cursor: pointer;
 }
 
 .user_show_body .list_post_user .igtv span {
@@ -553,25 +555,26 @@
   text-transform: uppercase;
 }
 
-.user_show_body .list_post_user .save {
+.user_show_body .list_post_user #save_show_btn {
   color: rgba(var(--f52, 142, 142, 142), 1);
   text-decoration: none;
   margin-right: 60px;
   padding-top: 10px;
+  cursor: pointer;
 }
 
-.user_show_body .list_post_user .save span {
+.user_show_body .list_post_user #save_show_btn span {
   display: flex;
   align-items: center;
 }
 
-.user_show_body .list_post_user .save span .save_icon {
+.user_show_body .list_post_user #save_show_btn span .save_icon {
   background: url("../assets/sprite2.png") no-repeat 0 -389px;
   width: 12px;
   height: 12px;
 }
 
-.user_show_body .list_post_user .save span p {
+.user_show_body .list_post_user #save_show_btn span p {
   margin-left: 6px;
   text-transform: uppercase;
 }
@@ -580,6 +583,7 @@
   color: rgba(var(--f52, 142, 142, 142), 1);
   text-decoration: none;
   padding-top: 10px;
+  cursor: pointer;
 }
 
 .user_show_body .list_post_user .people span {
@@ -621,6 +625,10 @@
   grid-gap: 30px;
 }
 
+.user_show_body .post_user_show .container_post_user .post_user {
+  position: relative;
+}
+
 .user_show_body .post_user_show .container_post_user .post_user img {
   cursor: pointer;
   width: 293px;
@@ -629,6 +637,159 @@
 
 .user_show_body .post_user_show .container_post_user .post_user img:not(:first-child) {
   display: none;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  width: 293px;
+  height: 293px;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover:hover {
+  opacity: 1;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover .contain_hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 293px;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover .contain_hover .likes_hover {
+  display: flex;
+  margin-right: 30px;
+  align-items: center;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover .contain_hover .likes_hover p {
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover .contain_hover .likes_hover .likes_hover_icon {
+  background: url("../assets/sprite2.png") no-repeat -340px -335px;
+  width: 19px;
+  height: 17px;
+  margin-right: 8px;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover .contain_hover .comments_hover {
+  display: flex;
+  align-items: center;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover .contain_hover .comments_hover p {
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+}
+
+.user_show_body .post_user_show .container_post_user .post_user .hover .contain_hover .comments_hover .comments_hover_icon {
+  background: url("../assets/sprite2.png") no-repeat -112px -369px;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+}
+
+.user_show_body .save_post_show {
+  margin: 20px 0;
+  display: none;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+
+.user_show_body .save_post_show p {
+  color: #8e8e8e;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 15px 0;
+}
+
+.user_show_body .save_post_show .container_save_post {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post {
+  position: relative;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post img {
+  cursor: pointer;
+  width: 293px;
+  height: 293px;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post img:not(:first-child) {
+  display: none;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  width: 293px;
+  height: 293px;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover:hover {
+  opacity: 1;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover .contain_hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 293px;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover .contain_hover .likes_hover {
+  display: flex;
+  margin-right: 30px;
+  align-items: center;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover .contain_hover .likes_hover p {
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover .contain_hover .likes_hover .likes_hover_icon {
+  background: url("../assets/sprite2.png") no-repeat -340px -335px;
+  width: 19px;
+  height: 17px;
+  margin-right: 8px;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover .contain_hover .comments_hover {
+  display: flex;
+  align-items: center;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover .contain_hover .comments_hover p {
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+}
+
+.user_show_body .save_post_show .container_save_post .save_post .hover .contain_hover .comments_hover .comments_hover_icon {
+  background: url("../assets/sprite2.png") no-repeat -112px -369px;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
 }
 
 #thumbnail_modal {

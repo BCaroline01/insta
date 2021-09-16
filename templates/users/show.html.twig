@@ -35,30 +35,30 @@
         </section>
     </div>
     <div class="list_post_user">
-        <a href="" class="square">
+        <div id="square_post_user">
             <span>
                 <div class="square_icon"></div>
                 <p>publications</p>
             </span>
-        </a>
-        <a href="" class="igtv">
+        </div>
+        <div class="igtv">
             <span>
                 <div class="igtv_icon"></div>
                 <p>igtv</p>
             </span>
-        </a>
-        <a href="" class="save">
+        </div>
+        <div id="save_show_btn">
             <span>
                 <div class="save_icon"></div>
                 <p>enregistrements</p>
             </span>
-        </a>
-        <a href="" class="people">
+        </div>
+        <div class="people">
             <span>
                 <div class="people_icon"></div>
                 <p>identifié(e)</p>
             </span>
-        </a>
+        </div>
     </div>
     <article class="post_user_show">
          {% if posts %}
@@ -68,6 +68,18 @@
                 {% for img in post.media %}
                 <img src="{{ asset(img.path) }}" alt="">
                 {% endfor %}
+                <div class="hover">
+                    <div class="contain_hover">
+                        <div class="likes_hover">
+                            <div class="likes_hover_icon"></div>
+                            <p>{{post.likes | length}}</p> 
+                        </div>
+                        <div class="comments_hover">
+                            <div class="comments_hover_icon"></div> 
+                            <p>{{post.comments | length}}</p> 
+                        </div>
+                    </div> 
+                </div>
             </div>
             {% endfor %}
         </div>    
@@ -75,9 +87,39 @@
         <p class="no_post">Pas de publication</p> 
         {% endif %}
     </article>
-    <article class="save_user_show">
-        
-
+    <article class="save_post_show">
+        <p>Vous êtes la seule personne qui peut voir ce que vous avez enregistré.</p>
+        {% if posts %}
+        <div class="container_save_post">
+            {% for Savepost in savePosts %}
+            <div class="save_post">
+                {% for img in Savepost.media %}
+                <img src="{{ asset(img.path) }}" alt="">
+                {% endfor %}
+                <div class="hover">
+                    <div class="contain_hover">
+                        <div class="likes_hover">
+                            <div class="likes_hover_icon"></div>
+                            <p>{{Savepost.likes | length}}</p> 
+                        </div>
+                        <div class="comments_hover">
+                            <div class="comments_hover_icon"></div> 
+                            <p>{{Savepost.comments | length}}</p> 
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            {% endfor %}
+        </div>    
+        {% else %}
+        <div class="no_save_post">
+            <section>
+                <div class="icon_cercle_save"></div>
+                <h3>Enregistrer</h3>
+                <p>Enregistrer les photos et les vidéos que vous souhaitez revoir. Personne ne reçoit de notification, et vous êtes la seule personne qui peut voir vos enregistrements.</p>
+            </section>
+        </div>
+        {% endif %}
     </article>
 </section>
 <section id="thumbnail_modal">

@@ -80,7 +80,7 @@ class UsersController extends AbstractController
     /**
      * @Route("/{username}", name="users_show", methods={"GET"})
      */
-    public function show(Users $user,PostsSaveRepository $PostsSaveRepository, PostsRepository $postsRepository, UsersRepository $usersRepository, FollowersRepository $FollowersRepository): Response
+    public function show(Users $user, PostsSaveRepository $PostsSaveRepository, PostsRepository $postsRepository, UsersRepository $usersRepository, FollowersRepository $FollowersRepository): Response
     {
         
         $id_user = $user->getId();
@@ -105,12 +105,21 @@ class UsersController extends AbstractController
         }else{
             $id_follow = 0;
         }
-       
+
+        //Search every posts saved by the user
+        $savedarray = $PostsSaveRepository->findBy(['id_user' => $id_user]);
+        if(!empty($savedarray )){
+            foreach($savedarray as $saved ){
+                $id_post_save[] = $saved->getIdPost();
+            }
+        }else{
+            $id_post_save = 0;
+        }
 
         return $this->render('users/show.html.twig', [
             'user' => $user,
             'posts' => $postsRepository->findBy(['id_user' => $id_user]),
-            'savePosts' => $PostsSaveRepository->findBy(['id_user' => $id_user]),
+            'savePosts' => $postsRepository->findBy(['id' => $id_post_save]),
             'followers' => $usersRepository->findBy(['id' => $id_followers]),
             'follow' => $usersRepository->findBy(['id' => $id_follow]),
         ]);
