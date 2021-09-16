@@ -281,6 +281,20 @@ class Posts
         return false;
     }
 
+       /**
+      * function to know if a user like the post
+      *
+      * @param  Users $user
+      * @return bool
+      */
+      public function isSavedByUser(Users $user) : bool
+      {
+          foreach($this->postsSaves as $postsSaves){
+              if($postsSaves->getIdUser() === $user) return true;
+          }
+          return false;
+      }
+
      /**
       * @return Collection|PostsSave[]
       */

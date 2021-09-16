@@ -105,8 +105,13 @@
                         border: none;
                         width: 40px;
                         height: 40px;
-                        .save_icon{
+                        .empty{
                             background: url('../assets/sprite1.png') no-repeat -211px -499px;
+                            width: 19px;
+                            height: 24px;
+                        } 
+                        .full{
+                            background: url('../assets/sprite1.png') no-repeat -133px -499px;
                             width: 19px;
                             height: 24px;
                         } 

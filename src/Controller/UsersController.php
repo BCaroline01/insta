@@ -12,6 +12,7 @@ use App\Repository\MediaRepository;
 use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
 use App\Repository\FollowersRepository;
+use App\Repository\PostsSaveRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -79,7 +80,7 @@ class UsersController extends AbstractController
     /**
      * @Route("/{username}", name="users_show", methods={"GET"})
      */
-    public function show(Users $user, PostsRepository $postsRepository, UsersRepository $usersRepository, FollowersRepository $FollowersRepository): Response
+    public function show(Users $user,PostsSaveRepository $PostsSaveRepository, PostsRepository $postsRepository, UsersRepository $usersRepository, FollowersRepository $FollowersRepository): Response
     {
         
         $id_user = $user->getId();
@@ -109,6 +110,7 @@ class UsersController extends AbstractController
         return $this->render('users/show.html.twig', [
             'user' => $user,
             'posts' => $postsRepository->findBy(['id_user' => $id_user]),
+            'savePosts' => $PostsSaveRepository->findBy(['id_user' => $id_user]),
             'followers' => $usersRepository->findBy(['id' => $id_followers]),
             'follow' => $usersRepository->findBy(['id' => $id_follow]),
         ]);

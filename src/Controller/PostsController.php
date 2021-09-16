@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\Likes;
 use App\Entity\Media;
 use App\Entity\Posts;
+use App\Entity\PostsSave;
 use App\Entity\Users;
 use App\Form\PostsType;
 use App\Repository\LikesRepository;
 use App\Repository\MediaRepository;
 use App\Repository\PostsRepository;
+use App\Repository\PostsSaveRepository;
 use App\Repository\UsersRepository;
 use Symfony\Component\Mime\Message;
 use Doctrine\Persistence\ObjectManager;
@@ -187,6 +189,55 @@ class PostsController extends AbstractController
        return $this->json([
            'Message' => 'Like add',
            'likes' => $likeRepository->count(['id_post' => $post])
+       ], 200);
+    }
+
+    /**
+     * save a post
+     *
+     * @param  App\Entity\Posts;
+     * @param  Doctrine\Persistence\ObjectManager;
+     * @param  App\Repository\PostsSaveRepository;
+     * @return Symfony\Component\HttpFoundation\Response
+     */
+     /**
+     * @Route("/{id}/save", name="post_save", methods={"GET"})
+     */
+    public function postSave(Posts $post, PostsSaveRepository $postsSaveRepository): Response
+    {
+     
+        $user = $this->getUser();
+
+        if(!$user) return $this->json([
+            'Message' => 'Unauthorized'
+        ], 403);
+
+        if($post->isSavedByUser($user)){
+            $save = $postsSaveRepository->findOneBy([
+                'id_post' => $post,
+                'id_user' => $user,
+            ]);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($save);
+            $entityManager->flush();
+
+            return $this->json([
+                'message' => 'Save delete',
+                'save' => $postsSaveRepository->count(['id_post' => $post])
+            ], 200);
+        }
+
+        $save = new PostsSave;
+        $save->setIdPost($post);
+        $save->setIdUser($user);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($save);
+        $entityManager->flush();
+
+       return $this->json([
+           'Message' => 'save add',
+           'Save' => $postsSaveRepository->count(['id_post' => $post])
        ], 200);
     }
 

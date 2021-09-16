@@ -42,8 +42,12 @@
                             <div class="send_icon"></div>
                         </a>
                     </div>
-                    <a href="#" class="save_post_Btn">
-                        <div class="save_icon"></div>
+                    <a href="{{ path('post_save', {'id': post.id}) }}" class="save_post_Btn">
+                        {% if app.user and post.isSavedByUser(app.user) %}
+                        <div class="save_icon full"></div>
+                        {% else %}
+                        <div class="save_icon empty"></div>
+                        {% endif %}
                     </a>
                 </div>
                 <div class="likes">

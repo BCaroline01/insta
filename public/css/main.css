@@ -1028,8 +1028,14 @@ header .container nav ul #container_profil_thumbnail #container_submenu .submenu
   height: 40px;
 }
 
-.home_page .post_home .container_post_home .share .icons a .save_icon {
+.home_page .post_home .container_post_home .share .icons a .empty {
   background: url("../assets/sprite1.png") no-repeat -211px -499px;
+  width: 19px;
+  height: 24px;
+}
+
+.home_page .post_home .container_post_home .share .icons a .full {
+  background: url("../assets/sprite1.png") no-repeat -133px -499px;
   width: 19px;
   height: 24px;
 }
