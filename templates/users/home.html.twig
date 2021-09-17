@@ -34,6 +34,9 @@
                             {% else %}
                             <div class="heart like_icon"></div>
                             {% endif %}
+                            <button class="likes">
+                                <p class="nb-js-like">{{post.likes | length}} J'aime</p>
+                            </button>
                         </a>
                         <a>
                             <div class="comment_icon"></div>
@@ -50,11 +53,7 @@
                         {% endif %}
                     </a>
                 </div>
-                <div class="likes">
-                    <button>
-                        <p class="nb-js-like">{{post.likes | length}} J'aime</p>
-                    </button>
-                </div>
+             
                 <div class="content">
                     <p><a href="">{{ user_post.username }}</a> {{post.content}}</p>
                 </div>

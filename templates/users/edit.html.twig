@@ -1,13 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Users{% endblock %}
+{% block title %}Modifier profil{% endblock %}
 
 {% block body %}
-    <h1>Edit Users</h1>
-
-    {{ include('users/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('users_index') }}">back to list</a>
-
-    {{ include('users/_delete_form.html.twig') }}
+    <div id="user_edit_page">
+        <div class="user_edit_container">
+            <ul>
+                <li><a href="#">Modifier profil</a></li>
+                <li><a href="#">Changer mon mot de passe</a></li>
+                <li><a href="#">E-mail ou texto</a></li>
+                <li><a href="#">Notifications push</a></li>
+                <li><a href="#">Gérer les contacts</a></li>
+                <li><a href="#">Sécurité et confidentialité</a></li>
+                <li><a href="#">Activité de connexion</a></li>
+                <li><a href="#">E-mails d’Instagram</a></li>
+            </ul>
+            <article> 
+                <div class="thumbnail">
+                    <img src="{{ asset( user.thumbnail ) }}" alt="photo" />
+                    <h2>{{ user.username }}</h2> 
+                </div>           
+                {{ include('users/_formEdit.html.twig', {'button_label': 'Envoyer'}) }}
+                {{ include('users/_delete_form.html.twig') }}
+            </article>
+        </div>
+    </div>
 {% endblock %}

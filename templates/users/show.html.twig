@@ -6,7 +6,6 @@
 {% block body %}
 <section class="user_show_body">
     <div class="user_show">
-
         <div id="profil_img" class="profil_img">
             <label for="thumbnail_input">
                 <img id="img_thumbnail" src="{{ asset( user.thumbnail ) }}" alt="photo" />
@@ -143,7 +142,5 @@
         </div>
     </div>
 </section>
-<a href="{{ path('users_index') }}">back to list</a>
-{{ include('users/_delete_form.html.twig') }}
 <script src="{{ asset('js/user_show.js') }}"></script>
 {% endblock %}

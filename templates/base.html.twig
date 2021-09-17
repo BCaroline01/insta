@@ -52,7 +52,7 @@
                                     <img src="{{ asset('assets/save_icon.svg') }}" alt="">
                                     <p>Enregistré</p>
                                 </a>
-                                <a href="">
+                                <a href="{{ path('users_edit', {'username': app.user.username}) }}">
                                     <img src="{{ asset('assets/setting_icon.svg') }}" alt="">
                                     <p>Paramètres</p>
                                 </a>

@@ -7,6 +7,7 @@ use App\Entity\Media;
 use App\Entity\Posts;
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Form\EditUsersType;
 use App\Entity\Followers;
 use App\Repository\MediaRepository;
 use App\Repository\PostsRepository;
@@ -217,13 +218,14 @@ class UsersController extends AbstractController
      */
     public function userprofile(Request $request, Users $user): Response
     {
-        $form = $this->createForm(UsersType::class, $user);
+        $form = $this->createForm(EditUsersType::class, $user);
         $form->handleRequest($request);
+        $username = $this->getUser()->getUsername(); 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('users_show', ['username' => $username], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('users/edit.html.twig', [

@@ -6,7 +6,7 @@ function onClickBtnLike(event){
     event.preventDefault();
 
     const url = this.href;
-    const count = document.querySelector('p.nb-js-like');
+    const count = this.querySelector('p.nb-js-like');
     const icon = this.querySelector('.heart');
 
     axios.get(url).then(function(response){
@@ -29,6 +29,7 @@ function onClickBtnLike(event){
 
 // function addEventListener click on icon //
 const btnLike = document.querySelectorAll('a.js-like');
+
 btnLike.forEach(function(linkLikes){
     linkLikes.addEventListener('click', onClickBtnLike);
 })
