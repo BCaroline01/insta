@@ -32,6 +32,7 @@ class EditUsersType extends AbstractType
             ->add('description',TextareaType::class, [
                 'label' => 'Bio',
                 'required' => false,
+                "attr" => array( "rows" => 3),
             ])
             ->add('email',EmailType::class, [
                 'label' => 'Adresse e-mail',

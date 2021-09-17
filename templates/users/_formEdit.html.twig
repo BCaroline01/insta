@@ -1,12 +1,18 @@
-{{ form_start(form) }}
+{{ form_start(form, { 'attr' : { 'class': 'edit_users' } }) }}
     {{ form_row(form.name) }}
-    <p>Aidez les gens à trouver votre compte à l’aide de votre nom le plus connu, que ce soit votre nom complet, votre surnom ou votre nom d’entreprise. <br>
-    Vous pouvez uniquement changer votre nom deux fois tous les 14 jours.</p>
-    {{ form_row(form.username) }}
-    <p>Dans la plupart des cas, vous pourrez reprendre votre nom d’utilisateur pendant encore 14 jours. <a href="https://help.instagram.com/876876079327341">En savoir plus</a></p> 
+    <div>
+        <p>Aidez les gens à trouver votre compte à l’aide de votre nom le plus connu, que ce soit votre nom complet, votre surnom ou votre nom d’entreprise. <br>
+        Vous pouvez uniquement changer votre nom deux fois tous les 14 jours.</p>
+    </div>
+        {{ form_row(form.username) }}
+    <div>
+        <p>Dans la plupart des cas, vous pourrez reprendre votre nom d’utilisateur pendant encore 14 jours. <a href="https://help.instagram.com/876876079327341" target="_blank">En savoir plus</a></p> 
+    </div>
     {{ form_row(form.description) }}
-    <p>Informations personnelles <br>
-    Fournissez vos informations personnelles, même si le compte est utilisé pour une entreprise, un animal ou autre chose. Elles n’apparaîtront pas sur votre profil public.</p>
+    <div>
+        <p>Informations personnelles <br>
+        Fournissez vos informations personnelles, même si le compte est utilisé pour une entreprise, un animal ou autre chose. Elles n’apparaîtront pas sur votre profil public.</p>
+    </div>
     {{ form_row(form.email) }}
     {{ form_row(form.phone) }}
     <button class="btn">{{ button_label|default('edit') }}</button>

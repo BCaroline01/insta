@@ -48,7 +48,7 @@
                                     <img src="{{ asset('assets/profil_icon.svg') }}" alt="">
                                     <p>Profil</p>
                                 </a>
-                                <a href="">
+                                <a href="{{ path('users_show', {'username': app.user.username}) }}">
                                     <img src="{{ asset('assets/save_icon.svg') }}" alt="">
                                     <p>Enregistré</p>
                                 </a>
@@ -56,7 +56,7 @@
                                     <img src="{{ asset('assets/setting_icon.svg') }}" alt="">
                                     <p>Paramètres</p>
                                 </a>
-                                <a href="">
+                                <a href="{{ path('app_logout') }}">
                                     <img src="{{ asset('assets/switch_account_icon.svg') }}" alt="">
                                     <p>Changer de compte</p>
                                 </a>
